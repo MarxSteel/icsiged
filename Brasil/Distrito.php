@@ -223,16 +223,7 @@ include_once 'cargosDistrito.php';
          <span class="users-list-date">IP4</span>
        </li>
        <?php } else { } ?>
-       
-
-
-
-
-
-                  </ul>
-
-
-
+      </ul>
     </div>
     <div class="tab-pane active" id="clubes">
     <!-- TABELA DE CLUBES ATIVOS DO DISTITO -->
@@ -322,8 +313,6 @@ include_once '../footer.php';
 <script src="../bootstrap/js/bootstrap.min.js"></script>
 <script src="../dist/js/app.min.js"></script>
 <script src="../dist/js/demo.js"></script>
-<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
 <script src="../plugins/select2/select2.full.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <!-- DataTables -->
