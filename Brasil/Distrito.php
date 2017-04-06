@@ -24,43 +24,6 @@ $dDistrito = $PDO->prepare("SELECT * FROM distrito WHERE distrito='$D'");
  $Clubes = $PDO->query("SELECT COUNT(*) FROM icbr_clube WHERE icbr_Status='A' AND icbr_Distrito = '$D'")->fetchColumn();
  $Projetos = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_Distrito = '$D'")->fetchColumn();
 
-
-
-function valida_estado ($X){
-  if ($X == "AC") {
-    echo "Acre";
-  }
-  elseif ($X === "") {
-    echo "";
-  }
-  elseif ($X === "") {
-    echo "";
-  }
-  elseif ($X === "") {
-    echo "";
-  }
-  elseif ($X === "") {
-    echo "";
-  }
-  elseif ($X === "") {
-    echo "";
-  }
-  elseif ($X === "") {
-    echo "";
-  }
-  elseif ($X === "") {
-    echo "";
-  }
-  elseif ($X === "") {
-    echo "";
-  }
-
-  elseif ($X === "PR") {
-    echo " Paraná";
-  }
-  
-}
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -74,6 +37,7 @@ function valida_estado ($X){
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
  <link rel="stylesheet" href="../dist/css/AdminLTE.css">
  <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+ <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
 </head>
  <?php include_once '../top_menu.php'; ?> <!-- CHAMANDO O TOP MENU (COR, DADOS DE USUARIO, CABEÇALHO -->
  <aside class="main-sidebar">
@@ -88,62 +52,79 @@ function valida_estado ($X){
   </h1>
  </section>
  <section class="content">
+ <?php if ($RDI == "") {  ?>   
+  <div class="row">
+   <div class="col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-orange"><i class="glyphicon glyphicon-exclamation-sign"></i></span>
+       <div class="info-box-content">
+        <span class="info-box-text">Atenção</span>
+         <span class="info-box-number">O Distrito não enviou informações à <i>MDIO Interact Brasil</i> </span>
+       </div>
+    </div>
+   </div>
+  </div>
+ <?php } else {?>
  <div class="row">
-  <div class="col-xs-4">
-   <div class="box box-solid">
-    <div class="box-header with-border">
-     <h3 class="box-title">Região</h3>
-     <div class="box-body">
-      <div class="info-box2">
-       <span class="info-box-mini"><img src="../dist/img/UF/<?php echo $UF1; ?>.png" width="50"></span>
-        <div class="info-box-content2">
-          <span class="info-box-number"><?php valida_estado($UF1); ?></span>
-          </div>
-         </div>
+  <div class="col-md-4 col-xs-12">
+   <div class="box box-solid">  
+    <div class="box-body">
+    <table>
+     <tbody>
+      <tr>
+       <td>
+        <span class="info-box-mini">
+         <img src="../dist/img/UF/<?php echo $UF1; ?>.png" width="50">
+        </span>
+       </td>
+       <td class="distrito-box-estado"><?php valida_estado($UF1); ?></td>
+      </tr>
+      <?php if ($UF2 <> "") { ?>
+      <tr>
+       <td>
+        <span class="info-box-mini">
+         <img src="../dist/img/UF/<?php echo $UF2; ?>.png" width="50">
+        </span>
+       </td>
+       <td class="info-box-content2"><?php valida_estado($UF2); ?></td>
+      </tr>
+      <?php } else {} if ($UF3 <> "") { ?>
+      <tr>
+       <td>
+        <span class="info-box-mini">
+         <img src="../dist/img/UF/<?php echo $UF3; ?>.png" width="50">
+        </span>
+       </td>
+       <td class="info-box-content2"><?php valida_estado($UF3); ?></td>
+      </tr>
+     <?php } else {} ?>
+    </table>
+   </div>
+  </div>
+  <div class="box box-widget widget-user">
+   <div class="box-body">
+    <div class="col-sm-4 border-right">
+     <div class="description-block">
+      <h5 class="description-header"><?php echo $Clubes; ?></h5>
+       <span class="description-text">CLUBES</span>
+     </div>
+    </div>
+    <div class="col-sm-4 border-right">
+     <div class="description-block">
+      <h5 class="description-header"><?php echo $Associados; ?></h5>
+      <span class="description-text">ASSOCIADOS</span>
+     </div>
+    </div>
+    <div class="col-sm-4">
+     <div class="description-block">
+      <h5 class="description-header"><?php echo $Projetos; ?></h5>
+       <span class="description-text">PROJETOS</span>
      </div>
     </div>
    </div>
-   <div class="box box-widget widget-user">
-    <div class="widget-user-header bg-aqua-active">
-     <h3 class="widget-user-username"><?php echo $NomeRDI; ?></h3>
-     <h5 class="widget-user-desc">Representante Distrital de Interact</h5>
-    </div>
-    <div class="widget-user-image">
-     <img class="img-circle" src="../dist/img/perfil/<?php echo $FotoRDI; ?>" alt="User Avatar">
-    </div>
-    <div class="box-footer">
-     <div class="row">
-      <div class="col-sm-4 border-right">
-       <div class="description-block">
-         <h5 class="description-header"><?php echo $Clubes; ?></h5>
-          <span class="description-text">CLUBES</span>
-       </div>
-      </div>
-      <div class="col-sm-4 border-right">
-       <div class="description-block">
-         <h5 class="description-header"><?php echo $Associados; ?></h5>
-         <span class="description-text">ASSOCIADOS</span>
-      </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-4">
-                  <div class="description-block">
-         <h5 class="description-header"><?php echo $Projetos; ?></h5>
-                    <span class="description-text">PROJETOS</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-            </div>
-          </div>
-
-
-
-   <div class="box box-widget widget-user-2">
-    <div class="widget-user-header bg-yellow">
+  </div>
+  <div class="box box-widget widget-user-2">
+    <div class="widget-user-header shazam-azul">
       <div class="widget-user-image">
         <img class="img-circle" src="../dist/img/perfil/<?php echo $FotoRDI; ?>" alt="<?php echo $NomeRDI; ?>">
       </div>
@@ -151,8 +132,96 @@ function valida_estado ($X){
       <h5 class="widget-user-desc">RDI</h5>
     </div> 
    </div>
-  </div>
  </div>
+ <div class="col-md-8 col-xs-12">
+ <!-- TABELA POR ABAS -->
+  <div class="nav-tabs-custom">
+   <ul class="nav nav-tabs">
+    <li class="active"><a href="#equipe" data-toggle="tab">Equipe Distrital</a></li>
+    <li><a href="#clubes" data-toggle="tab">Clubes</a></li>
+    <li><a href="#projetos" data-toggle="tab">Projetos</a></li>
+   </ul>
+   <div class="tab-content">
+    <div class="tab-pane active" id="equipe">
+      <b>EQUIPE DISTRITAL</b>
+    </div>
+    <div class="tab-pane" id="clubes">
+    <!-- TABELA DE CLUBES ATIVOS DO DISTITO -->
+     <table id="clubes" class="table table-bordered table-striped">
+      <thead>
+       <tr>
+        <th>Clube</th>
+        <th>Reunião</th>
+        <th>E-Mail</th>
+        <th></th>
+       </tr>
+      </thead>
+      <tbody>
+       <?php
+        $ClubesDistrito = "SELECT * FROM icbr_clube WHERE icbr_Distrito='$D' and icbr_Status='A'";
+         $ChamaClube = $PDO->prepare($ClubesDistrito);
+         $ChamaClube->execute();
+          while ($Cl = $ChamaClube->fetch(PDO::FETCH_ASSOC)):
+          echo '
+       <tr>
+        <td>'. $Cl["icbr_Clube"] .'</td>
+        <td>'. $Cl["icbr_Semana"] .', '.  $Cl["icbr_Horario"]   . '( '. $Cl["icbr_Periodo"] .' )</td>
+        <td> '. $Cl["icbr_ProjetoEmail"] .' </td>';
+            echo '<td>';
+             echo '<a class="btn btn-default btn-xs" href="javascript:abrir(';
+             echo "'../Clubes/VerClube.php?ID=" . $Cl['icbr_id'] . "');";
+             echo '"><i class="fa fa-search"></i> VISUALIZAR</a>&nbsp;';
+            echo "</td>";
+       echo '</tr>';
+      endwhile;
+        ?>
+       <tr>
+        <td>Curitiba Norte</td>
+        <td>Sábado, 14:30, Semanal</td>
+        <td>meue-mail@email.com</td>
+        <td> </td>
+       </tr>
+      </tbody>
+     </table>
+    <!-- FIM DA TABELA DE CLUBES -->
+    </div>
+    <div class="tab-pane" id="projetos">
+    <!-- TABELA DE PROJETOS APROVADOS DO DISTITO -->
+     <table id="projetos" class="table table-bordered table-striped">
+      <thead>
+       <tr>
+        <th>PROJETO</th>
+        <th>AVENIDA</th>
+        <th></th>
+       </tr>
+      </thead>
+      <tbody>
+       <?php
+        $ProjetosDistrito = "SELECT * FROM icbr_projeto WHERE pro_distrito='$D' and pro_status='3'";
+         $ChamaProjeto = $PDO->prepare($ProjetosDistrito);
+         $ChamaProjeto->execute();
+          while ($Pj = $ChamaProjeto->fetch(PDO::FETCH_ASSOC)):
+          echo '
+       <tr>
+        <td>'. $Pj["pro_nome"] .'</td>
+        <td>'. $Pj["pro_avenida"] .'</td>';
+            echo '<td>';
+             echo '<a class="btn btn-default btn-xs" href="javascript:abrir(';
+             echo "'../ANP/vANP.php?ID=" . $Pj['id'] . "');";
+             echo '"><i class="fa fa-search"></i> VISUALIZAR</a>&nbsp;';
+            echo "</td>";
+       echo '</tr>';
+      endwhile;
+        ?>
+      </tbody>
+     </table>
+    <!-- FIM DA PROJETOS DE CLUBES -->
+    </div>
+   </div>
+  </div>
+ <!-- FIM DA TABELA POR ABAS -->
+ </div>
+ <?php } ?>
  </section>
 </div><!-- CONTENT-WRAPPER -->
 <?php 
@@ -163,6 +232,21 @@ include_once '../footer.php';
 <script src="../bootstrap/js/bootstrap.min.js"></script>
 <script src="../dist/js/app.min.js"></script>
 <script src="../dist/js/demo.js"></script>
-
+<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script>
+  $(function () {
+    $("#clubes").DataTable();
+    $("#projetos").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>
 </body>
 </html>

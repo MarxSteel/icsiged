@@ -6,6 +6,48 @@ $cDistrito = "active";
 $Submenu = "active";
 $PDO = db_connect();
 require_once '../QueryUser.php';
+
+
+$D = $Distrito;
+$dDistrito = $PDO->prepare("SELECT * FROM distrito WHERE distrito='$D'");
+ $dDistrito->execute();
+ $ddd = $dDistrito->fetch();
+  $RDI = $ddd['RDI'];
+  $SDI = $ddd['SDI'];
+
+  //CHAMANDO DADOS DO RDI
+   $DadosRDI = $PDO->prepare("SELECT * FROM icbr_associado WHERE icbr_uid='$RDI'");
+   $DadosRDI->execute();
+    $RRDI = $DadosRDI->fetch();
+     $NomeRDI = $RRDI['icbr_AssNome'];
+     $FotoRDI = $RRDI['icbr_AssFoto'];
+  //CHAMANDO DADOS DO RDI
+   $DadosSDI = $PDO->prepare("SELECT * FROM icbr_associado WHERE icbr_uid='$SDI'");
+   $DadosSDI->execute();
+    $RSDI = $DadosSDI->fetch();
+     $NomeSDI = $RSDI['icbr_AssNome'];
+     $FotoSDI = $RSDI['icbr_AssFoto'];
+
+
+
+$AM = $PDO->query("SELECT COUNT(*) FROM icbr_associado WHERE icbr_AssStatus='A' AND icbr_AssDistrito = '$Distrito' AND icbr_AssGenero='M'")->fetchColumn();
+$AF = $PDO->query("SELECT COUNT(*) FROM icbr_associado WHERE icbr_AssStatus='A' AND icbr_AssDistrito = '$Distrito' AND icbr_AssGenero='F'")->fetchColumn();
+$QtComunidades = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Distrito' AND pro_avenida='COMUNIDADES'")->fetchColumn();
+$QtInternos = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Distrito' AND pro_avenida='INTERNOS'")->fetchColumn();
+$QtInternacionais = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Distrito' AND pro_avenida='INTERNACIONAIS'")->fetchColumn();
+$QtFinancas = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Distrito' AND pro_avenida='FINANCAS'")->fetchColumn();
+$QtIP = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Distrito' AND pro_avenida='IMAGEM PUBLICA'")->fetchColumn();
+
+
+
+ $Associados = $PDO->query("SELECT COUNT(*) FROM icbr_associado WHERE icbr_AssStatus='A' AND icbr_AssDistrito = '$D'")->fetchColumn();
+ $AsI = $PDO->query("SELECT COUNT(*) FROM icbr_associado WHERE icbr_AssStatus='I' AND icbr_AssDistrito = '$D'")->fetchColumn();
+ $Clubes = $PDO->query("SELECT COUNT(*) FROM icbr_clube WHERE icbr_Status='A' AND icbr_Distrito = '$D'")->fetchColumn();
+ $Projetos = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_Distrito = '$D'")->fetchColumn();
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,12 +59,69 @@ require_once '../QueryUser.php';
  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
- <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+ <link rel="stylesheet" href="../dist/css/AdminLTE.css">
  <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
  <link rel="stylesheet" href="../plugins/iCheck/flat/blue.css">
  <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
  <link rel="stylesheet" href="../plugins/select2/select2.min.css">
- <link rel="stylesheet" href="../plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+  <link rel="stylesheet" href="../plugins/morris/morris.css">
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Avenida', 'Quantidade'],
+          ['Comunidades',     <?php echo $QtComunidades; ?>],
+          ['Imagem Pública',     <?php echo $QtIP; ?>],
+          ['Finanças',     <?php echo $QtFinancas; ?>],
+          ['Internos',     <?php echo $QtInternos; ?>],
+          ['Internacionais',    <?php echo $QtInternacionais; ?>]
+        ]);
+
+        var options = {
+        legend: 'none',
+        pieSliceText: 'label',
+          pieHole: 0.2,
+          slices: {
+            0: { color: '#0088ff' },
+            1: { color: '#ff0033' },
+            2: { color: '#aadd22' },
+            3: { color: '#ff7700' },
+            4: { color: '#9911aa' }
+          }
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('listaProjetos'));
+        chart.draw(data, options);
+      }
+    </script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Gênero', 'Quantidade'],
+          ['Feminino',   <?php echo $AF; ?>],
+          ['Masculino',     <?php echo $AM; ?>]
+        ]);
+
+        var options = {
+        legend: 'true',
+        pieSliceText: 'label',
+          pieHole: 0.4,
+          slices: {
+            0: { color: '#cc2288' },
+            1: { color: '#0ebeff' }
+          }
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('associados'));
+        chart.draw(data, options);
+      }
+    </script>
+
 </head>
  <?php include_once '../top_menu.php'; ?> <!-- CHAMANDO O TOP MENU (COR, DADOS DE USUARIO, CABEÇALHO -->
  <aside class="main-sidebar">
@@ -38,83 +137,136 @@ require_once '../QueryUser.php';
  </section>
  <section class="content">
   <div class="row">
-   <div class="col-xs-4">
-   <?php
-    $nAtivos = $PDO->query("SELECT count(*) from icbr_associado WHERE icbr_AssDistrito='$Distrito' AND icbr_AssStatus='A'")->fetchColumn();
-      $AtFem = $PDO->query("SELECT count(*) from icbr_associado WHERE icbr_AssDistrito='$Distrito' AND icbr_AssGenero='F' AND icbr_AssStatus='A'")->fetchColumn();
-      $AtMas = $PDO->query("SELECT count(*) from icbr_associado WHERE icbr_AssDistrito='$Distrito' AND icbr_AssGenero='M' AND icbr_AssStatus='A'")->fetchColumn();
-      ?>
-    <div class="box box-primary">
-     <div class="box-header with-border">
-      <h3 class="box-title">Associados Ativos: <?php echo $nAtivos; ?> Associados</h3>
-     </div>
+   <div class="col-md-4 col-xs-12">
+    <div class="box box-widget widget-user">
      <div class="box-body">
-      <div id="donutchart" style="width: 280px; height: 200px;"></div>
+      <div class="col-sm-4 border-right">
+       <div class="description-block">
+        <h5 class="description-header"><?php echo $Clubes; ?></h5>
+        <span class="description-text">CLUBES</span>
+       </div>
+      </div>
+      <div class="col-sm-4 border-right">
+       <div class="description-block">
+        <h5 class="description-header"><?php echo $Associados; ?></h5>
+        <span class="description-text">ASSOCIADOS</span>
+       </div>
+      </div>
+      <div class="col-sm-4">
+       <div class="description-block">
+        <h5 class="description-header"><?php echo $Projetos; ?></h5>
+        <span class="description-text">PROJETOS</span>
+       </div>
+      </div>
      </div>
     </div>
-   <?php
-    $nInativos = $PDO->query("SELECT count(*) from icbr_associado WHERE icbr_AssDistrito='$Distrito' AND icbr_AssStatus='I'")->fetchColumn();
-    $InaFem = $PDO->query("SELECT count(*) from icbr_associado WHERE icbr_AssDistrito='$Distrito' AND icbr_AssGenero='F' AND icbr_AssStatus='I'")->fetchColumn();
-    $InaMas = $PDO->query("SELECT count(*) from icbr_associado WHERE icbr_AssDistrito='$Distrito' AND icbr_AssGenero='M' AND icbr_AssStatus='I'")->fetchColumn();
-      ?>  
-    <div class="box box-danger">
-     <div class="box-header with-border">
-      <h3 class="box-title">Associados Inativos: <?php echo $nInativos; ?> Associados</h3>
+    <div class="box box-widget widget-user-2">
+     <div class="widget-user-header shazam-azul">
+      <div class="widget-user-image">
+        <img class="img-circle" src="../dist/img/perfil/<?php echo $FotoRDI; ?>" alt="<?php echo $NomeRDI; ?>">
+      </div>
+      <h5><?php echo $NomeRDI; ?></h5>
+      <h5 class="widget-user-desc">Representante Distrital</h5>
+     </div> 
+    </div>
+   </div>
+   <div class="col-md-4 col-xs-12">
+    <div class="box box-solid">
+      <div class="box-body">
+       <div class="row">
+        <div class="col-md-12">
+         <div class="chart-responsive">
+          <div id="associados"></div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="box-footer no-padding">
+       <ul class="nav nav-pills nav-stacked">
+        <li>
+        <div class="info-box2 bg-aqua">
+         <span class="info-box-mini"><img src="../dist/img/icons/boy.png" width="50"></span>
+          <div class="info-box-content2">
+           <span class="info-box-text2">MASCULINO</span>
+           <span class="info-box-number"><?php echo $AM; ?> Associados</span>
+          </div>
+         </div>
+        </li>
+        <li>
+        <div class="info-box2 bg-maroon">
+         <span class="info-box-mini"><img src="../dist/img/icons/girl.png" width="50"></span>
+          <div class="info-box-content2">
+           <span class="info-box-text2">FEMININO</span>
+           <span class="info-box-number"><?php echo $AF; ?> Associados</span>
+          </div>
+         </div>
+        </li>
+       </ul>
+      </div> 
      </div>
-     <div class="box-body">
-      <div id="chartInativo" style="width: 280px; height: 200px;"></div>
+   </div>
+   <div class="col-md-4 col-xs-12">
+    <div class="box box-solid">
+      <div class="box-body">
+       <div class="row">
+        <div class="col-md-12">
+         <div class="chart-responsive">
+          <div id="listaProjetos"></div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="box-footer no-padding">
+       <ul class="nav nav-pills nav-stacked">
+        <li>
+         <div class="info-box2 shazam-verde">
+          <span class="info-box-icon5"><i class="fa fa-money"></i></span>
+           <div class="info-box-content3"><strong>FINANÇAS</strong>
+           <i class="pull-right"><?php echo $QtFinancas; ?> PROJETOS</i>
+           </div>
+          </div>
+        </li>
+        <li>
+         <div class="info-box2 shazam-vermelho">
+          <span class="info-box-icon5"><i class="fa fa-laptop"></i></span>
+           <div class="info-box-content3"><strong>IMAGEM PÚBLICA</strong>
+           <i class="pull-right"><?php echo $QtIP; ?> PROJETOS</i>
+           </div>
+          </div>
+        </li>
+        <li>
+         <div class="info-box2 shazam-azul">
+          <span class="info-box-icon5"><i class="fa fa-child"></i></i></span>
+           <div class="info-box-content3"><strong>COMUNIDADES</strong>
+           <i class="pull-right"><?php echo $QtComunidades; ?> PROJETOS</i>
+           </div>
+          </div>
+        </li>
+        <li>
+         <div class="info-box2 shazam-roxo">
+          <span class="info-box-icon5"><i class="glyphicon glyphicon-globe"></i></span>
+           <div class="info-box-content3"><strong>INTERNACIONAIS</strong>
+           <i class="pull-right"><?php echo $QtInternacionais; ?> PROJETOS</i>
+           </div>
+          </div>
+        </li>
+        <li>
+         <div class="info-box2 shazam-laranja">
+          <span class="info-box-icon5"><i class="fa fa-heartbeat"></i></span>
+           <div class="info-box-content3"><strong>INTERNOS</strong>
+           <i class="pull-right"><?php echo $QtInternos; ?> PROJETOS</i>
+           </div>
+          </div>
+        </li>
+       </ul>
+      </div> 
      </div>
     </div>
    </div>
-   <div class="col-xs-4">
-   <?php
-    $nClubes = $PDO->query("SELECT count(*) from icbr_clube WHERE icbr_Distrito='$Distrito'")->fetchColumn();
-    $nClubAtivo = $PDO->query("SELECT count(*) from icbr_clube WHERE icbr_Distrito='$Distrito' AND icbr_Status='A'")->fetchColumn();
-    $nClubInativo = $PDO->query("SELECT count(*) from icbr_clube WHERE icbr_Distrito='$Distrito' AND icbr_Status='D'")->fetchColumn();
-      ?>  
-    <div class="box box-warning">
-     <div class="box-header with-border">
-      <h3 class="box-title">Clubes Cadastrados: <?php echo $nClubes; ?></h3>
-     </div>
-     <div class="box-body">
-      <li class="list-group-item">
-       Clubes Ativos: <?php echo $nClubAtivo; ?>
-      </li>
-      <li class="list-group-item">
-       Clubes Desativados: <?php echo $nClubInativo; ?>
-      </li>
-     </div>
-    </div>
-    <!--<div class="info-box">
-     <a data-toggle="modal" data-target="#ImportaXLS">
-      <span class="info-box-icon btn-warning"><i class="fa fa-upload"></i></span>
-     </a>
-     <div class="info-box-content"><br /><h4>Importar Associados (XLS)</h4></div>
-    </div>-->
-   </div>
-   <div class="col-xs-4">
-    <div class="box box-primary">
-     <div class="box-header with-border">
-      <h3 class="box-title">Equipe Distrital</h3>
-     </div>
-     <?php
-      $Equipe = "SELECT * FROM icbr_equipeDistrital WHERE Distrito='$Distrito'";
-       $qryEquipe = $PDO->prepare($Equipe);
-       $qryEquipe->execute();
-      ?>
-     <div class="box-body">
-      <ul class="products-list product-list-in-box">
-      <?php while ($equipe = $qryEquipe->fetch(PDO::FETCH_ASSOC)): ?>
-       <li class="item">
-        <a href="#" class="product-title"><?php echo $equipe['Membro']; ?></a>
-         <span class="product-description"><?php echo $equipe['Cargo']; ?>
-         </span>
-       </li>
-       <?php endwhile; ?>
-      </ul>
-     </div>
-    </div>
-   </div>
+  </div>
+
+
+
  </section>
 </div><!-- CONTENT-WRAPPER -->
 <?php 
@@ -137,50 +289,31 @@ include_once '../footer.php';
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
 <script src="../plugins/select2/select2.full.min.js"></script>
+<script src="../plugins/morris/morris.min.js"></script>
+
+<script>
+  $(function () {
+    "use strict";
+
+    //DONUT CHART
+    var donut = new Morris.Donut({
+      element: 'chartAvenida',
+      resize: true,
+      colors: ["#0088ff", "#ff0033", "#aadd22", "#ff7700", "#9911aa"],
+      data: [
+        {label: "Comunidades", value: <?php echo $QtComunidades; ?>},
+        {label: "Imagem Pública", value: <?php echo $QtIP; ?>},
+        {label: "Finanças", value: <?php echo $QtFinancas; ?>},
+        {label: "Internos", value: <?php echo $QtInternos; ?>},
+        {label: "Internacionais", value: <?php echo $QtInternacionais; ?>}
+      ],
+      hideHover: 'auto'
+    });
+
+  });
+</script>
 
 
-<!-- Bootstrap 3.3.6 -->
-<!-- FastClick -->
-<!-- AdminLTE App -->
-<!-- Sparkline -->
-<script src="../plugins/sparkline/jquery.sparkline.min.js"></script>
-<!-- jvectormap -->
-<script src="../plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="../plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-<!-- SlimScroll 1.3.0 -->
-<!-- ChartJS 1.0.1 -->
-<script src="../plugins/chartjs/Chart.min.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="../dist/js/pages/dashboard2.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
-   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Genero', 'Quantidade'],
-          ['Masculino',     <?php echo $AtMas; ?>],
-          ['Feminino',      <?php echo $AtFem; ?> ]
-        ]);
-        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-        chart.draw(data);
-      }
-    </script>
-    <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Genero', 'Quantidade'],
-          ['Masculino',     <?php echo $InaMas; ?>],
-          ['Feminino',      <?php echo $InaFem; ?> ]
-        ]);
-        var chart = new google.visualization.PieChart(document.getElementById('chartInativo'));
-        chart.draw(data);
-      }
-    </script>
 
 </body>
 </html>

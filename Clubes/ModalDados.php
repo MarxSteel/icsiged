@@ -750,7 +750,23 @@
  </div>
 </div>
 <!-- MODAL DE ALTERAÇÃO DO TESOUREIRO -->
-
+<!-- MODAL DE MANUAIS -->
+<div id="Manuais" class="modal fade" role="dialog">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header bg-navy">
+    <button type="button" class="close" data-dismiss="modal">X</button>
+     <h4 class="modal-title">Manuais</h4>
+   </div>
+   <div class="modal-body">
+    
+EM BREVE
+   </div>
+   <div class="modal-footer"></div>
+  </div>
+ </div>
+</div>
+<!-- MODAL DE MANUAIS -->
 
 
 

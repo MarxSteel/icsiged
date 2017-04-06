@@ -63,12 +63,12 @@
  </li>
   <li class="<?php echo $cDistritos; ?>">
    <a href="<?php echo $server; ?>/Brasil/Distritos.php">
-    <i class="fa fa-users"></i> <span>Distritos</span>
+    <i class="fa fa-map"></i> <span>Distritos</span>
    </a>
   </li>
   <li class="<?php echo $cPerfil; ?>">
    <a href="<?php echo $server; ?>/MeuPerfil/dashboard.php">
-    <i class="fa fa-users"></i> <span>Meu Perfil</span>
+    <i class="fa fa-user"></i> <span>Meu Perfil</span>
    </a>
   </li>
  <li class="header"></li>

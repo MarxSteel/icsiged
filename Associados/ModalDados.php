@@ -272,7 +272,8 @@
           $data = new Spreadsheet_Excel_Reader($dir . "/" . $NomeValidar . '.xls'); 
           for( $i=3; $i <= $data->rowcount($sheet_index=0); $i++ )
           {
-            $NomeCompleto = $data->val($i, 1);
+            $NomeXLS = $data->val($i, 1);
+            $NomeCompleto = TiraCaractere($NomeXLS);
             $DtNasc = $data->val($i, 2);
             $QDtNasc = explode("/", $DtNasc);
             $NascMes = $QDtNasc[0];
@@ -345,9 +346,24 @@
   </div>
  </div>
 </div>
-<!-- MODAL DE EXEMPLO -->
 <!-- FINAL DO MODAL DE IMPRESSÃO DE CREDENCIAL -->
+<!-- MODAL DE MANUAIS -->
+<div id="Manuais" class="modal fade" role="dialog">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header bg-navy">
+    <button type="button" class="close" data-dismiss="modal">X</button>
+     <h4 class="modal-title">Manuais</h4>
+   </div>
+   <div class="modal-body">
+    em breve
 
+   </div>
+   <div class="modal-footer"></div>
+  </div>
+ </div>
+</div>
+<!-- MODAL DE MANUAIS -->
 
 
 

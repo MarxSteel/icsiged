@@ -119,9 +119,6 @@ $AssI->execute();
     <div class="nav-tabs-custom">
      <ul class="nav nav-tabs">
       <li class="active"><a href="#settings" data-toggle="tab"> Dados de Login</a></li>
-      <li><a href="#activity" data-toggle="tab">Dados de Distrito</a></li>
-      <li><a href="#timeline" data-toggle="tab">Linha do Tempo</a></li>
-      
      </ul>
      <div class="tab-content">
       <div class=" tab-pane" id="activity">

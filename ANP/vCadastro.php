@@ -76,7 +76,7 @@ $teste = "teste";
        {
          echo '
          <div class="info-box2 shazam-azul">
-          <span class="info-box-icon4"><i class="glyphicon glyphicon-hourglass"></i></span>
+          <span class="info-box-icon5"><i class="glyphicon glyphicon-hourglass"></i></span>
            <div class="info-box-content3" style="text-align: center;"><strong>AGUARDANDO REVISÃO</strong>
            </div>
           </div>
@@ -85,7 +85,7 @@ $teste = "teste";
        elseif ($StatusProjeto === "2") {
          echo '
          <div class="info-box2 shazam-vermelho">
-          <span class="info-box-icon4"><i class="glyphicon glyphicon-remove"></i></span>
+          <span class="info-box-icon5"><i class="glyphicon glyphicon-remove"></i></span>
            <div class="info-box-content3" style="text-align: center;"><strong>PENDENTES / REPROVADO</strong>
            </div>
           </div>
@@ -94,7 +94,7 @@ $teste = "teste";
        elseif ($StatusProjeto === "3") {
          echo '
          <div class="info-box2 shazam-verde">
-          <span class="info-box-icon4"><i class="glyphicon glyphicon-ok"></i></span>
+          <span class="info-box-icon5"><i class="glyphicon glyphicon-ok"></i></span>
            <div class="info-box-content3" style="text-align: center;"><strong>APROVADO</strong>
            </div>
           </div>

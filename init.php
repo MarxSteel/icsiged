@@ -1,5 +1,5 @@
 <?php
-$server = 'http://192.168.0.5:8888/interact';
+$server = 'http://localhost:8888/interact';
 // constantes com as credenciais de acesso ao banco MySQL
 $host = "localhost:8889";
 $user = "root";
