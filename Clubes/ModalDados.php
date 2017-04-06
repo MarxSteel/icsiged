@@ -494,11 +494,8 @@
           $HoraReuniao = $_POST['HoraReuniao'];
           $PeriodoReuniao = $_POST['PeriodoReuniao'];
           $DiaReuniao = $_POST['diaSemana'];
-            //PEGAUNDO LATITUDE E LONGITUDE
-          $lat = Latitude($Rua, $Num, $Bairro, $Cidade, $UF);
-          $long = Longitude($Rua, $Num, $Bairro, $Cidade, $UF);
 
-          $Cadastra = $PDO->query("INSERT INTO icbr_clube (icbr_Clube, icbr_DataFundado, icbr_Distrito, icbr_RotaryPadrinho, icbr_CEnd, icbr_CNum, icbr_Bairro, icbr_Cidade, icbr_CEP, icbr_UF, icbr_Periodo, icbr_Semana, icbr_Horario, icbr_Complemento, icbr_Status, icbr_EndComplemento, lat, lon) VALUES ('$NomeClube', '$DtFundado', '$Distrito', '$NomeRotary', '$Rua', '$Num', '$Bairro', '$Cidade', '$CEP', '$UF', '$PeriodoReuniao', '$DiaReuniao', '$HoraReuniao', '$LocalReuniao', 'A', '$novoComp', '$lat', '$long')");
+          $Cadastra = $PDO->query("INSERT INTO icbr_clube (icbr_Clube, icbr_DataFundado, icbr_Distrito, icbr_RotaryPadrinho, icbr_CEnd, icbr_CNum, icbr_Bairro, icbr_Cidade, icbr_CEP, icbr_UF, icbr_Periodo, icbr_Semana, icbr_Horario, icbr_Complemento, icbr_Status, icbr_EndComplemento) VALUES ('$NomeClube', '$DtFundado', '$Distrito', '$NomeRotary', '$Rua', '$Num', '$Bairro', '$Cidade', '$CEP', '$UF', '$PeriodoReuniao', '$DiaReuniao', '$HoraReuniao', '$LocalReuniao', 'A', '$novoComp')");
            if($Cadastra)
            {
             echo '<script type="text/JavaScript">alert("Clube Cadastrado com Sucesso!");
