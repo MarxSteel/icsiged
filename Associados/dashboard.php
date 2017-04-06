@@ -124,7 +124,7 @@ else{
           <?php while ($user = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
           <tr>
            <td><?php echo $user['icbr_AssNome'] ?></td>
-           <td><?php echo $user['icbr_AssDtNascimento'] ?></td>
+           <td><?php echo dateConvert($user['icbr_AssDtNascimento']); ?></td>
            <td><?php echo $user['icbr_AssClube'] ?></td>
            <?php
            $LinkUser = $user['icbr_uid'];
@@ -171,7 +171,7 @@ else{
           <tr>
             <?php $LinkUserIn = $Ain['icbr_uid']; ?>
            <td><?php echo $Ain['icbr_AssNome'] ?></td>
-           <td><?php echo $Ain['icbr_AssDtNascimento'] ?></td>
+           <td><?php echo dateConvert($Ain['icbr_AssDtNascimento']); ?></td>
            <td><?php echo $Ain['icbr_AssClube'] ?></td>
            <td>
             <a class="btn btn-info btn-sm" href="javascript:abrir('VerSocio.php?ID=<?php echo $LinkUserIn; ?>');">
