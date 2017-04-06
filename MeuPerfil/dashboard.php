@@ -109,8 +109,48 @@ $AssI->execute();
        <strong><i class="fa fa-phone margin-r-5"></i> Contato</strong>
         <p>
          <span>E-Mail: <?php echo $uMail; ?></span><br />
-         <span>Fone 1: <?php echo '(' . $uDDD1 . ') ' . $uF1; ?></span><br />
-         <span>Fone 2: <?php echo '(' . $uDDD2 . ') ' . $uF2; ?></span>
+          <div class="col-md-6">        
+           <h4><strong>Telefone 1:</strong></h4>
+           (<code><?php echo $uDDD1; ?></code>)
+         <?php
+          $VlrT1 = strlen($uF1);
+          if ($VlrT1 == "9") {
+           $T1 = substr( $uF1, 0, 1 );
+           $T2 = substr( $uF1, 1, 4 );
+           $T3 = substr( $uF1, 5, 4 );
+            echo $T1 . "-" . $T2 . "-" . $T3;
+          }
+          elseif ($VlrT1 == "8") {
+           $T1 = substr( $uF1, 0, 4 );
+           $T2 = substr( $uF1, 4, 4 );
+            echo $T1 . "-" . $T2;
+          }
+          else{
+            echo $uF1;
+          }
+         ?>
+          </div>
+          <div class="col-md-6">        
+           <h4><strong>Telefone 2:</strong></h4>
+          (<code><?php echo $uDDD2; ?></code>)
+         <?php
+          $VlrT2 = strlen($uF2);
+          if ($VlrT2 == "9") {
+           $TT1 = substr( $uF2, 0, 1 );
+           $TT2 = substr( $uF2, 1, 4 );
+           $TT3 = substr( $uF2, 5, 4 );
+            echo $TT1 . "-" . $TT2 . "-" . $TT3;
+          }
+          elseif ($VlrT2 == "8") {
+           $TT1 = substr( $uF2, 0, 4 );
+           $TT2 = substr( $uF2, 4, 4 );
+            echo $TT1 . "-" . $TT2;
+          }
+          else{
+            echo $uF2;
+          }
+         ?> 
+          </div>  
         </p>
      </div>
     </div>
