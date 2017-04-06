@@ -163,16 +163,17 @@
       $Nome = $_POST['nome'];
       $Clube = $_POST['clube'];
       $Cargo = $_POST['cargo'];
-      $Posse = $_POST['posse'];
-      $DtNasc = $_POST['nasc'];
+      $DataPosse = $_POST['posse'];
+       $Posse = dateConvert($DataPosse);
+      $DataNascimento = $_POST['nasc'];
+       $DtNasc = dateConvert($DataNascimento);
       $Rua = $_POST['rua'];
       $Num = $_POST['numero'];
       $Bairro = $_POST['bairro'];
       $Cidade = $_POST['cidade'];
       $UF = $_POST['uf'];
       $CEP = $_POST['cep'];
-      $G = $_POST['genero'];
-    
+      $G = $_POST['genero'];     
       $Mail = $_POST['mail'];
       $DDD1 = $_POST['ddd'];
       $TELEFONE_1 = $_POST['telefone'];
@@ -277,13 +278,13 @@
             $NascMes = $QDtNasc[0];
             $NascDia = $QDtNasc[1];
             $NascAno = $QDtNasc[2];
-             $DataNascimento = $NascDia . "/" . $NascMes . "/" . $NascAno;
+             $DataNascimento = $NascAno . "-" . $NascMes . "-" . $NascDia;
             $DtPosse = $data->val($i, 3);
             $QDtPosse = explode("/", $DtNasc);
             $PosseMes = $QDtNasc[0];
             $PosseDia = $QDtNasc[1];
             $PosseAno = $QDtNasc[2];
-             $DataPosse = $PosseDia . "/" . $PosseMes . "/" . $PosseAno;
+             $DataPosse = $PosseAno . "-" . $PosseMes . "-" . $PosseDia;
             $DistritoImporta = $data->val($i, 4);
             $ERua = $data->val($i, 5);
             $ENum = $data->val($i, 6);

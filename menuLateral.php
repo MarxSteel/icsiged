@@ -48,13 +48,12 @@
      <a href="<?php echo $server; ?>/Tesouraria/dashboard.php">
       <i class="fa fa-dollar"></i>Tesouraria</a>
     </li>
-   </ul>
-
     <?php } else { } if ($PrivANP === "1") { ?>
     <li class="<?php echo $cProj; ?>">
      <a href="<?php echo $server; ?>/ANP/dashboard.php">
       <i class="fa fa-file-text"></i>Cadastro de Projetos</a>
     </li>
+   </ul>
    <!--
     <li class="<?php echo $cANP; ?>">
      <a href="<?php echo $server; ?>/ANP/arquivo.php">
@@ -62,7 +61,11 @@
     </li>-->
     <?php } else { } ?>
  </li>
-
+  <li class="<?php echo $cDistritos; ?>">
+   <a href="<?php echo $server; ?>/Brasil/Distritos.php">
+    <i class="fa fa-users"></i> <span>Distritos</span>
+   </a>
+  </li>
   <li class="<?php echo $cPerfil; ?>">
    <a href="<?php echo $server; ?>/MeuPerfil/dashboard.php">
     <i class="fa fa-users"></i> <span>Meu Perfil</span>

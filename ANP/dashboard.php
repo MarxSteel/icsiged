@@ -449,7 +449,7 @@ $QtIP = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Dist
       $pNome = $_POST['nomeProjeto'];
       $pAvenida = $_POST['avenidaProjeto'];
       $pClube = $_POST['clubeProjeto'];
-      $DataCadastro = date('d/m/Y - H:i');
+      $DataCadastro = date('Y-m-d - H:i');
       date_default_timezone_set("Brazil/East"); //Definindo timezone padrão
       $ext = strtolower(substr($_FILES['fileUpload']['name'],-4)); //Pegando extensão do arquivo
        if ($ext === ".pdf") {

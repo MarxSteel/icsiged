@@ -104,7 +104,9 @@
          $CryRDI = md5($SenhaRDI);
          if ($CryRDI === $SenhaUsuarioLogado) 
          {
-          $NovaData = $_POST['DataFund'];
+          $NovaDataF = $_POST['DataFund'];
+           $NovaData = dateConvert($NovaDataF);
+
            $executa = $PDO->query("UPDATE icbr_clube SET icbr_DataFundado='$NovaData' WHERE icbr_id='$codClube' ");
            if($executa)
            {
@@ -259,7 +261,7 @@
         <input type="text" name="num" required class="form-control"/>
        </div>
        <div class="col-xs-4">Complemento
-        <input name="complementoEndereco" type="text" required class="form-control" />
+        <input name="complementoEndereco" type="text" class="form-control" />
        </div>
        <div class="col-xs-4">Bairro
         <input type="text" name="bairro" required class="form-control" placeholder="BAIRRO" />
@@ -323,7 +325,11 @@
           $Bairro = $_POST['bairro'];
           $Cidade = $_POST['cidade'];
           $UF = $_POST['UF'];
-           $executa = $PDO->query("UPDATE icbr_clube SET icbr_CEnd='$Rua', icbr_CNum='$Num', icbr_Bairro='$Bairro', icbr_Cidade='$Cidade', icbr_UF='$UF', icbr_CEP='$CEPEndereco', icbr_EndComplemento='$CompEndereco' WHERE icbr_id='$codClube' ");
+
+          $lat = Latitude($Rua, $Num, $Bairro, $Cidade, $UF);
+          $long = Longitude($Rua, $Num, $Bairro, $Cidade, $UF);
+
+           $executa = $PDO->query("UPDATE icbr_clube SET icbr_CEnd='$Rua', icbr_CNum='$Num', icbr_Bairro='$Bairro', icbr_Cidade='$Cidade', icbr_UF='$UF', icbr_CEP='$CEPEndereco', icbr_EndComplemento='$CompEndereco', lat='$lat', lon='$long' WHERE icbr_id='$codClube' ");
            if($executa)
            {
             echo '<script type="text/JavaScript">alert("ATUALIZADO COM SUCESSO");
@@ -466,7 +472,6 @@
         <div class="modal-footer"><br /><br /><br />
         </div>
        </form>
-
        <?php 
         if(@$_POST["NovoClub"])
         {
@@ -477,6 +482,7 @@
           $NomeClube = $_POST['NomeClube'];
           $NomeRotary = $_POST['NomeRotary'];
           $DataFundado = $_POST['DataFundado'];
+           $DtFundado = dateConvert($DataFundado);
           $Rua = $_POST['rua'];
           $Num = $_POST['num'];
           $CEP = $_POST['CEP'];
@@ -488,15 +494,15 @@
           $HoraReuniao = $_POST['HoraReuniao'];
           $PeriodoReuniao = $_POST['PeriodoReuniao'];
           $DiaReuniao = $_POST['diaSemana'];
-          $Cadastra = $PDO->query("INSERT INTO icbr_clube (icbr_Clube, icbr_DataFundado, icbr_Distrito, icbr_RotaryPadrinho, icbr_CEnd, icbr_CNum, icbr_Bairro, icbr_Cidade, icbr_CEP, icbr_UF, icbr_Periodo, icbr_Semana, icbr_Horario, icbr_Complemento, icbr_Status, icbr_EndComplemento) VALUES ('$NomeClube', '$DataFundado', '$Distrito', '$NomeRotary', '$Rua', '$Num', '$Bairro', '$Cidade', '$CEP', '$UF', '$PeriodoReuniao', '$DiaReuniao', '$HoraReuniao', '$LocalReuniao', 'A', '$novoComp')");
+            //PEGAUNDO LATITUDE E LONGITUDE
+          $lat = Latitude($Rua, $Num, $Bairro, $Cidade, $UF);
+          $long = Longitude($Rua, $Num, $Bairro, $Cidade, $UF);
+
+          $Cadastra = $PDO->query("INSERT INTO icbr_clube (icbr_Clube, icbr_DataFundado, icbr_Distrito, icbr_RotaryPadrinho, icbr_CEnd, icbr_CNum, icbr_Bairro, icbr_Cidade, icbr_CEP, icbr_UF, icbr_Periodo, icbr_Semana, icbr_Horario, icbr_Complemento, icbr_Status, icbr_EndComplemento, lat, lon) VALUES ('$NomeClube', '$DtFundado', '$Distrito', '$NomeRotary', '$Rua', '$Num', '$Bairro', '$Cidade', '$CEP', '$UF', '$PeriodoReuniao', '$DiaReuniao', '$HoraReuniao', '$LocalReuniao', 'A', '$novoComp', '$lat', '$long')");
            if($Cadastra)
            {
             echo '<script type="text/JavaScript">alert("Clube Cadastrado com Sucesso!");
               location.href="dashboard.php"</script>';
-
-
-            echo '<script type="text/javascript">alert("Clube Cadastrado com Sucesso!");</script>';
-            echo '<script type="text/javascript">window.close();</script>';
            }
            else
            {

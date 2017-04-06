@@ -1,12 +1,12 @@
 <?php
-$server = 'http://192.168.0.2:8888/SIGED3';
+$server = 'http://192.168.0.5:8888/interact';
 // constantes com as credenciais de acesso ao banco MySQL
 $host = "localhost:8889";
 $user = "root";
 $pass = "root";
 $banco = "siged_novo";
 $titulo = "SIGED - Sistema Integrado de Gestão Distrital <<MDIO INTERACT BRASIL>>";
-$versao = "1.1.1.6";
+$versao = "1.1.1.8";
 define('DB_HOST', $host);
 define('DB_USER', $user);
 define('DB_PASS', $pass);

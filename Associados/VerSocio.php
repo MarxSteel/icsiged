@@ -16,6 +16,7 @@ $IDClube = $IDSocio;
      $ClubeSocio = $ds['icbr_AssClube'];
       $IDClubeSocio = $ds['icbr_AssClubeID'];
       $CargoSocio = $ds['icbr_AssCargo'];
+
       $DataPosseSocio = $ds['icbr_DtPosse'];
       $DataNascimentoSocio = $ds['icbr_AssDtNascimento'];
       $StatusSocio = $ds['icbr_AssStatus'];
@@ -73,12 +74,12 @@ include_once '../header_top.php';
          <ul class="nav nav-stacked">
           <li>
            <a>Data de Posse 
-            <span class="pull-right badge bg-green"><?php echo $DataPosseSocio; ?></span>
+            <span class="pull-right badge bg-green"><?php echo dateConvert($DataPosseSocio); ?></span>
            </a>
           </li>
           <li>
            <a>Data de Nascimento 
-            <span class="pull-right badge bg-aqua"><?php echo $DataNascimentoSocio; ?></span>
+            <span class="pull-right badge bg-aqua"><?php echo dateConvert($DataNascimentoSocio); ?></span>
            </a>
           </li>
           <li>

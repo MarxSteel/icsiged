@@ -5,9 +5,7 @@ $codClube = $_GET['ID'];
 $PDO = db_connect();
 require_once '../QueryUser.php';
 require_once 'ValidaClube.php';
-
 $teste = "teste";
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,7 +63,7 @@ $teste = "teste";
         </li>
         <li class="list-group-item">
          <b>Data de Fundação:</b> 
-         <a class="pull-right"><?php echo $clubeDataFundado; ?></strong></i>
+         <a class="pull-right"><?php echo dateConvert($clubeDataFundado); ?></strong></i>
           <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#DataFundacao"><i class="fa fa-refresh"></i></button>
          </a>
         </li>

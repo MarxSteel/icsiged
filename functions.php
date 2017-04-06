@@ -72,4 +72,33 @@ function validaCPF($cpf)
   }
 }
 
+
+function Latitude($Rua, $Num, $Bairro, $Cidade, $UF){
+ $string = $Rua;
+ $array=explode(" ",$string);
+ $n_palavras=count($array);
+  for($i=0 ; $i < $n_palavras ; $i++ ){
+   $Valor = $array[$i] . '+';
+  }
+  $address = $Valor . ',' . $Num . ',' . $Bairro . ',' . $Cidade . ',' . $UF . ',Brasil';
+   $geocode = file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$address.'&sensor=false');
+  $output= json_decode($geocode);
+  $lat = $output->results[0]->geometry->location->lat;
+  return $lat;
+}
+
+function Longitude($Rua, $Num, $Bairro, $Cidade, $UF){
+ $string = $Rua;
+ $array=explode(" ",$string);
+ $n_palavras=count($array);
+  for($i=0 ; $i < $n_palavras ; $i++ ){
+   $Valor = $array[$i] . '+';
+  }
+  $address = $Valor . ',' . $Num . ',' . $Bairro . ',' . $Cidade . ',' . $UF . ',Brasil';
+   $geocode = file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$address.'&sensor=false');
+  $output= json_decode($geocode);              
+  $long = $output->results[0]->geometry->location->lng;
+  return $long;
+}
+
 ?>

@@ -377,7 +377,6 @@ $CPI = "0";
       </li>
      </ul>
     </div> 
-
    </div><!-- ACABA BOX DEMOGRAFIA GERAL -->
    <div class="box box-default collapsed-box box-solid">
     <div class="box-header with-border">

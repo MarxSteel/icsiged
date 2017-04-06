@@ -33,6 +33,7 @@
      </a>
      <div class="info-box-content"><h4>Tesouraria</h4></div>
     </div>
+    
    </div>
   <?php } else { } if ($PrivANP === "1") { ?>
    <div class="col-md-4 col-sm-6 col-xs-12">

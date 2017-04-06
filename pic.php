@@ -129,7 +129,7 @@
      </div>
      <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="info-box2">
-       <a href="Associados/dashboard.php" >
+       <a href="Brasil/Distritos.php" >
         <span class="info-box-icon3 bg-white"><img src="dist/img/icons/lecture.png" width="45"></span>
        </a>
        <div class="info-box-content2"><h4>Distritos</h4></div>

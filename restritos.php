@@ -1,7 +1,7 @@
 <?php
 /* restritos.php */ 
 session_start();
-
+include_once'restritos.php';
 if (isset($_SESSION['MeuLogin'])) { 
     $login = $_SESSION['MeuLogin']['login'];
     $hora = $_SESSION['MeuLogin']['hora'];      
@@ -19,6 +19,6 @@ if (isset($_SESSION['MeuLogin'])) {
     // registrando os novos dados na session.
     $_SESSION['MeuLogin'] = array("login" => $login,"chave" => $chave,"hora" => $hora); 
 } else {
-    header("location: index.php?erro=Aceso restrito");
+    header("location: " . $server . "/index.php?erro=Aceso restrito");
 }
 ?>
