@@ -155,70 +155,70 @@ include_once 'cargosDistrito.php';
      <b>EQUIPE DISTRITAL</b>
       <ul class="users-list clearfix">
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoRDI; ?>" alt="<?php echo $NomeRDI; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoRDI; ?>" alt="<?php echo $NomeRDI; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeRDI; ?></a>
          <span class="users-list-date">RDI</span>
        </li>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoSDI; ?>" alt="<?php echo $NomeSDI; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoSDI; ?>" alt="<?php echo $NomeSDI; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeSDI; ?></a>
          <span class="users-list-date">SDI</span>
        </li>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoTDI; ?>" alt="<?php echo $NomeTDI; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoTDI; ?>" alt="<?php echo $NomeTDI; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeTDI; ?></a>
          <span class="users-list-date">TDI</span>
        </li>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoPDI; ?>" alt="<?php echo $NomePDI; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoPDI; ?>" alt="<?php echo $NomePDI; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomePDI; ?></a>
          <span class="users-list-date">PDI</span>
        </li>
        <?php if ($DDP1 <> "") { ?>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoDDP1; ?>" alt="<?php echo $NomeDDP1; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoDDP1; ?>" alt="<?php echo $NomeDDP1; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeDDP1; ?></a>
          <span class="users-list-date">DDP1</span>
        </li>
        <?php } else { } if ($DDP2 <> "") { ?>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoDDP2; ?>" alt="<?php echo $NomeDDP2; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoDDP2; ?>" alt="<?php echo $NomeDDP2; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeDDP2; ?></a>
          <span class="users-list-date">DDP2</span>
        </li>
        <?php } else { } if ($DDP3 <> "") { ?>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoDDP3; ?>" alt="<?php echo $NomeDDP3; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoDDP3; ?>" alt="<?php echo $NomeDDP3; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeDDP3; ?></a>
          <span class="users-list-date">DDP3</span>
        </li>
        <?php } else { } if ($DDP4 <> "") { ?>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoDDP4; ?>" alt="<?php echo $NomeDDP4; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoDDP4; ?>" alt="<?php echo $NomeDDP4; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeDDP4; ?></a>
          <span class="users-list-date">DDP4</span>
        </li>
        <?php } else { } if ($IP1 <> "") { ?>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoIP1; ?>" alt="<?php echo $NomeIP1; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoIP1; ?>" alt="<?php echo $NomeIP1; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeIP1; ?></a>
          <span class="users-list-date">IP1</span>
        </li>
        <?php } else { } if ($IP2 <> "") { ?>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoIP2; ?>" alt="<?php echo $NomeIP2; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoIP2; ?>" alt="<?php echo $NomeIP2; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeIP2; ?></a>
          <span class="users-list-date">IP2</span>
        </li>
        <?php } else { } if ($IP3 <> "") { ?>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoIP3; ?>" alt="<?php echo $NomeIP3; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoIP3; ?>" alt="<?php echo $NomeIP3; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeIP3; ?></a>
          <span class="users-list-date">IP3</span>
        </li>
        <?php } else { } if ($IP4 <> "") { ?>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoIP4; ?>" alt="<?php echo $NomeIP4; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoIP4; ?>" alt="<?php echo $NomeIP4; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeIP4; ?></a>
          <span class="users-list-date">IP4</span>
        </li>
