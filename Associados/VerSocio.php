@@ -116,8 +116,9 @@ include_once '../header_top.php';
          <h3 class="box-title">Contato e Endereço</h3>
         </div>
         <div class="box-body">
-        <h4><strong>Telefone 1:</strong>
-        <br />(<code><?php echo $DDD1; ?></code>)
+          <div class="col-md-6">        
+           <h4><strong>Telefone 1:</strong></h4>
+           (<code><?php echo $DDD1; ?></code>)
          <?php
           $VlrT1 = strlen($TELEFONE_1);
           if ($VlrT1 == "9") {
@@ -135,8 +136,10 @@ include_once '../header_top.php';
             echo $TELEFONE_1;
           }
          ?>
-        <br /><strong>Telefone 2:</strong>
-        <br />(<code><?php echo $DDD2; ?></code>)
+          </div>
+          <div class="col-md-6">        
+           <h4><strong>Telefone 2:</strong></h4>
+          (<code><?php echo $DDD2; ?></code>)
          <?php
           $VlrT2 = strlen($TELEFONE_2);
           if ($VlrT2 == "9") {
@@ -153,7 +156,8 @@ include_once '../header_top.php';
           else{
             echo $TELEFONE_2;
           }
-         ?>        
+         ?> 
+          </div>       
         <br /><br /><strong>Endereço:</strong>
          <?php echo $RuaSocio . ", <strong>Num.:</strong>" . $NumSocio; ?>
          <br /><strong>Bairro:</strong>
