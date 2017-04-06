@@ -101,4 +101,89 @@ function Longitude($Rua, $Num, $Bairro, $Cidade, $UF){
   return $long;
 }
 
+function valida_estado ($X){
+  if ($X == "AC") {
+    echo " Acre";
+  }
+  elseif ($X === "AL") {
+    echo " Alagoas";
+  }
+  elseif ($X === "AP") {
+    echo " Amap&aacute;";
+  }
+  elseif ($X === "AM") {
+    echo " Amazonas";
+  }
+  elseif ($X === "BA") {
+    echo " Bahia";
+  }
+  elseif ($X === "CE") {
+    echo " Cear&aacute;";
+  }
+  elseif ($X === "DF") {
+    echo " Distrito Federal";
+  }
+  elseif ($X === "ES") {
+    echo " Esp&iacute;rito Santo";
+  }
+  elseif ($X === "GO") {
+    echo " Goi&aacute;";
+  }
+  elseif ($X === "MA") {
+    echo " Maranh&atilde;o";
+  }
+  elseif ($X === "MT") {
+    echo " Mato Grosso";
+  }
+  elseif ($X === "MS") {
+    echo " Mato Grosso do Sul";
+  }
+  elseif ($X === "MG") {
+    echo " Minas Gerais";
+  }
+  elseif ($X === "PA") {
+    echo " Par&aacute;";
+  }
+  elseif ($X === "PB") {
+    echo " Paraiba";
+  }
+  elseif ($X === "PR") {
+    echo " Paran&aacute;";
+  }
+  elseif ($X === "PE") {
+    echo " Pernambuco";
+  }
+  elseif ($X === "PI") {
+    echo " Piau&iacute;";
+  }
+  elseif ($X === "RJ") {
+    echo " Rio de Janeiro";
+  }
+  elseif ($X === "RN") {
+    echo " Rio Grande do Norte";
+  }
+  elseif ($X === "RS") {
+    echo " Rio Grande do Sul";
+  }
+  elseif ($X === "RO") {
+    echo " Rond&ocirc;nia";
+  }
+  elseif ($X === "RR") {
+    echo " Roraima";
+  }
+  elseif ($X === "SC") {
+    echo " Santa Catarina";
+  }
+  elseif ($X === "SP") {
+    echo " S&atilde;o Paulo";
+  }
+  elseif ($X === "SE") {
+    echo " Sergipe";
+  }
+  elseif ($X === "TO") {
+    echo " Tocantins";
+  }
+  
+}
+
 ?>

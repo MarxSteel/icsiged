@@ -2031,6 +2031,13 @@ a:focus {
   width: 100%;
   margin-bottom: 2px;
 }
+.info-estado {
+  display: block;
+  min-height: 25px;
+  background: #fff;
+  width: 100%;
+  margin-bottom: 25px;
+}
 .info-box small {
   font-size: 14px;
 }
@@ -2121,7 +2128,17 @@ a:focus {
   line-height: 15px;
   background: rgba(0, 0, 0, 0.2);
 }
-
+.info-box-icon5 {
+  display: block;
+  float: left;
+  height: 35px;
+  width: 55px;
+  text-align: center;
+  border-top-width: : 20px;
+  font-size: 25px;
+  line-height: 15px;
+  background: rgba(0, 0, 0, 0.2);
+}
 .info-box-mini2 {
   
   border-top-right-radius: 0;
@@ -2146,6 +2163,10 @@ a:focus {
 .info-box-content2 {
   padding: 5px 10px;
   margin-left: 20px;
+}
+.distrito-box-estado {
+  padding: 0px 10px;
+  margin-left: 200px;
 }
 .info-box-content3 {
   padding: 8px 10px;

@@ -53,9 +53,6 @@ $QtIP = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Dist
      </a>
      <div class="info-box-content"><br /><h4>Adicionar Projeto</h4></div>
     </div>
-    <a class="btn btn-info btn-lg btn-block" href="javascript:abrir('sendMensagem.php');">
-     <i class="fa fa-envelope"></i> Enviar mensagem para a Projetos
-    </a>  
     <br />
     <div class="box box-default collapsed-box box-solid">
      <div class="box-header with-border">
@@ -84,15 +81,15 @@ $QtIP = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Dist
        <ul class="nav nav-pills nav-stacked">
         <li>
          <div class="info-box2 shazam-verde">
-          <span class="info-box-icon4"><i class="glyphicon glyphicon-ok"></i></span>
+          <span class="info-box-icon5"><i class="glyphicon glyphicon-ok"></i></span>
            <div class="info-box-content3"><strong>APROVADOS</strong>
-            <i class="pull-right"><?php echo $QPR; ?> PROJETOS</i>
+            <i class="pull-right"><?php echo $QPA; ?> PROJETOS</i>
            </div>
           </div>
         </li>
         <li>
          <div class="info-box2 shazam-vermelho">
-          <span class="info-box-icon4"><i class="glyphicon glyphicon-remove"></i></span>
+          <span class="info-box-icon5"><i class="glyphicon glyphicon-remove"></i></span>
            <div class="info-box-content3"><strong>PENDENTES/REPROVADOS</strong>
             <i class="pull-right"><?php echo $QPP; ?> PROJETOS</i>
            </div>
@@ -100,7 +97,7 @@ $QtIP = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Dist
         </li>
         <li>
          <div class="info-box2 shazam-azul">
-          <span class="info-box-icon4"><i class="glyphicon glyphicon-hourglass"></i></span>
+          <span class="info-box-icon5"><i class="glyphicon glyphicon-hourglass"></i></span>
            <div class="info-box-content3"><strong>AGUARDANDO REVISÃO</strong>
             <i class="pull-right"><?php echo $QPR; ?> PROJETOS</i>
            </div>
@@ -138,7 +135,7 @@ $QtIP = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Dist
        <ul class="nav nav-pills nav-stacked">
         <li>
          <div class="info-box2 shazam-verde">
-          <span class="info-box-icon4"><i class="fa fa-money"></i></span>
+          <span class="info-box-icon5"><i class="fa fa-money"></i></span>
            <div class="info-box-content3"><strong>FINANÇAS</strong>
            <i class="pull-right"><?php echo $QtFinancas; ?> PROJETOS</i>
            </div>
@@ -146,7 +143,7 @@ $QtIP = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Dist
         </li>
         <li>
          <div class="info-box2 shazam-vermelho">
-          <span class="info-box-icon4"><i class="fa fa-laptop"></i></span>
+          <span class="info-box-icon5"><i class="fa fa-laptop"></i></span>
            <div class="info-box-content3"><strong>IMAGEM PÚBLICA</strong>
            <i class="pull-right"><?php echo $QtIP; ?> PROJETOS</i>
            </div>
@@ -154,7 +151,7 @@ $QtIP = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Dist
         </li>
         <li>
          <div class="info-box2 shazam-azul">
-          <span class="info-box-icon4"><i class="fa fa-child"></i></i></span>
+          <span class="info-box-icon5"><i class="fa fa-child"></i></i></span>
            <div class="info-box-content3"><strong>COMUNIDADES</strong>
            <i class="pull-right"><?php echo $QtComunidades; ?> PROJETOS</i>
            </div>
@@ -162,7 +159,7 @@ $QtIP = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Dist
         </li>
         <li>
          <div class="info-box2 shazam-roxo">
-          <span class="info-box-icon4"><i class="glyphicon glyphicon-globe"></i></span>
+          <span class="info-box-icon5"><i class="glyphicon glyphicon-globe"></i></span>
            <div class="info-box-content3"><strong>INTERNACIONAIS</strong>
            <i class="pull-right"><?php echo $QtInternacionais; ?> PROJETOS</i>
            </div>
@@ -170,7 +167,7 @@ $QtIP = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Dist
         </li>
         <li>
          <div class="info-box2 shazam-laranja">
-          <span class="info-box-icon4"><i class="fa fa-heartbeat"></i></span>
+          <span class="info-box-icon5"><i class="fa fa-heartbeat"></i></span>
            <div class="info-box-content3"><strong>INTERNOS</strong>
            <i class="pull-right"><?php echo $QtInternos; ?> PROJETOS</i>
            </div>
@@ -541,9 +538,6 @@ $QtIP = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Dist
        </a>    
        <a class="btn bg-olive btn-block" href="javascript:abrir('../Manuais/[ANP]CadastraProjeto.pdf');">
         RESPONDER PENDÊNCIA</i>
-       </a> 
-       <a class="btn bg-olive btn-block" href="javascript:abrir('../Manuais/[ANP]CadastraProjeto.pdf');">
-        SOLICITAR REVISÃO PELA
        </a>    
       </div>
      </div>

@@ -69,10 +69,10 @@ else{
    </div>
    <div class="col-md-4 col-sm-6 col-xs-12">
     <div class="info-box">
-     <a href="../Manuais/dashboard.php" target="_blank">
+     <a data-toggle="modal" data-target="#Manuais">
       <span class="info-box-icon bg-navy"><i class="fa fa-question"></i></span>
      </a>
-     <div class="info-box-content"><br /><h4>Manuais</h4></div>
+     <div class="info-box-content"><br /><h4>Importar Associados (XLS)</h4></div>
     </div>
    </div>
    <div class="col-md-4 col-sm-6 col-xs-12">
