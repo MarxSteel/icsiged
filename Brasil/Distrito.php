@@ -227,7 +227,7 @@ include_once 'cargosDistrito.php';
     </div>
     <div class="tab-pane active" id="clubes">
     <!-- TABELA DE CLUBES ATIVOS DO DISTITO -->
-     <table id="clubes" class="table table-bordered table-striped">
+     <table id="tabelaClubes" class="table table-bordered table-striped">
       <thead>
        <tr>
         <th>Clube</th>
@@ -267,7 +267,7 @@ include_once 'cargosDistrito.php';
     </div>
     <div class="tab-pane" id="projetos">
     <!-- TABELA DE PROJETOS APROVADOS DO DISTITO -->
-     <table id="projetos" class="table table-bordered table-striped">
+     <table id="tabelaProjetos" class="table table-bordered table-striped">
       <thead>
        <tr>
         <th>PROJETO</th>
@@ -326,16 +326,8 @@ include_once '../footer.php';
 <!-- AdminLTE for demo purposes -->
 <script>
   $(function () {
-    $("#clubes").DataTable();
-    $("#projetos").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
+    $("#tabelaClubes").DataTable();
+    $("#tabelaProjetos").DataTable();
   });
 </script>
 <script language="JavaScript">
