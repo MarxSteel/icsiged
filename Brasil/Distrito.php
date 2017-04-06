@@ -14,11 +14,18 @@ $dDistrito = $PDO->prepare("SELECT * FROM distrito WHERE distrito='$D'");
   $UF2 = $ddd['UF2'];
   $UF3 = $ddd['UF3'];
   $RDI = $ddd['RDI'];
-   $DadosRDI = $PDO->prepare("SELECT * FROM icbr_associado WHERE icbr_uid='$RDI'");
-   $DadosRDI->execute();
-    $RRDI = $DadosRDI->fetch();
-     $NomeRDI = $RRDI['icbr_AssNome'];
-     $FotoRDI = $RRDI['icbr_AssFoto'];
+  $SDI = $ddd['SDI'];
+  $TDI = $ddd['TDI'];
+  $PDI = $ddd['PDI'];
+  $DDP1 = $ddd['DDP1'];
+  $DDP2 = $ddd['DDP2'];
+  $DDP3 = $ddd['DDP3'];
+  $DDP4 = $ddd['DDP4'];
+  $IP1 = $ddd['IP1'];
+  $IP2 = $ddd['IP2'];
+  $IP3 = $ddd['IP3'];
+  $IP4 = $ddd['IP4'];
+include_once 'cargosDistrito.php';
 
  $Associados = $PDO->query("SELECT COUNT(*) FROM icbr_associado WHERE icbr_AssStatus='A' AND icbr_AssDistrito = '$D'")->fetchColumn();
  $Clubes = $PDO->query("SELECT COUNT(*) FROM icbr_clube WHERE icbr_Status='A' AND icbr_Distrito = '$D'")->fetchColumn();
@@ -38,6 +45,8 @@ $dDistrito = $PDO->prepare("SELECT * FROM distrito WHERE distrito='$D'");
  <link rel="stylesheet" href="../dist/css/AdminLTE.css">
  <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
  <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
+ <link rel="stylesheet" href="../plugins/select2/select2.min.css">
+
 </head>
  <?php include_once '../top_menu.php'; ?> <!-- CHAMANDO O TOP MENU (COR, DADOS DE USUARIO, CABEÇALHO -->
  <aside class="main-sidebar">
@@ -137,15 +146,86 @@ $dDistrito = $PDO->prepare("SELECT * FROM distrito WHERE distrito='$D'");
  <!-- TABELA POR ABAS -->
   <div class="nav-tabs-custom">
    <ul class="nav nav-tabs">
-    <li class="active"><a href="#equipe" data-toggle="tab">Equipe Distrital</a></li>
-    <li><a href="#clubes" data-toggle="tab">Clubes</a></li>
+    <li class="active"><a href="#clubes" data-toggle="tab">Clubes</a></li>
+    <li><a href="#equipe" data-toggle="tab">Equipe Distrital</a></li>
     <li><a href="#projetos" data-toggle="tab">Projetos</a></li>
    </ul>
    <div class="tab-content">
-    <div class="tab-pane active" id="equipe">
-      <b>EQUIPE DISTRITAL</b>
+    <div class="tab-pane" id="equipe">
+     <b>EQUIPE DISTRITAL</b>
+      <ul class="users-list clearfix">
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoRDI; ?>" alt="<?php echo $NomeRDI; ?>" width="128px" >
+         <a class="users-list-name" href="#"><?php echo $NomeRDI; ?></a>
+         <span class="users-list-date">RDI</span>
+       </li>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoSDI; ?>" alt="<?php echo $NomeSDI; ?>" width="128px" >
+         <a class="users-list-name" href="#"><?php echo $NomeSDI; ?></a>
+         <span class="users-list-date">SDI</span>
+       </li>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoTDI; ?>" alt="<?php echo $NomeTDI; ?>" width="128px" >
+         <a class="users-list-name" href="#"><?php echo $NomeTDI; ?></a>
+         <span class="users-list-date">TDI</span>
+       </li>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoPDI; ?>" alt="<?php echo $NomePDI; ?>" width="128px" >
+         <a class="users-list-name" href="#"><?php echo $NomePDI; ?></a>
+         <span class="users-list-date">PDI</span>
+       </li>
+       <?php if ($DDP1 <> "") { ?>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoDDP1; ?>" alt="<?php echo $NomeDDP1; ?>" width="128px" >
+         <a class="users-list-name" href="#"><?php echo $NomeDDP1; ?></a>
+         <span class="users-list-date">DDP1</span>
+       </li>
+       <?php } else { } if ($DDP2 <> "") { ?>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoDDP2; ?>" alt="<?php echo $NomeDDP2; ?>" width="128px" >
+         <a class="users-list-name" href="#"><?php echo $NomeDDP2; ?></a>
+         <span class="users-list-date">DDP2</span>
+       </li>
+       <?php } else { } if ($DDP3 <> "") { ?>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoDDP3; ?>" alt="<?php echo $NomeDDP3; ?>" width="128px" >
+         <a class="users-list-name" href="#"><?php echo $NomeDDP3; ?></a>
+         <span class="users-list-date">DDP3</span>
+       </li>
+       <?php } else { } if ($DDP4 <> "") { ?>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoDDP4; ?>" alt="<?php echo $NomeDDP4; ?>" width="128px" >
+         <a class="users-list-name" href="#"><?php echo $NomeDDP4; ?></a>
+         <span class="users-list-date">DDP4</span>
+       </li>
+       <?php } else { } if ($IP1 <> "") { ?>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoIP1; ?>" alt="<?php echo $NomeIP1; ?>" width="128px" >
+         <a class="users-list-name" href="#"><?php echo $NomeIP1; ?></a>
+         <span class="users-list-date">IP1</span>
+       </li>
+       <?php } else { } if ($IP2 <> "") { ?>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoIP2; ?>" alt="<?php echo $NomeIP2; ?>" width="128px" >
+         <a class="users-list-name" href="#"><?php echo $NomeIP2; ?></a>
+         <span class="users-list-date">IP2</span>
+       </li>
+       <?php } else { } if ($IP3 <> "") { ?>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoIP3; ?>" alt="<?php echo $NomeIP3; ?>" width="128px" >
+         <a class="users-list-name" href="#"><?php echo $NomeIP3; ?></a>
+         <span class="users-list-date">IP3</span>
+       </li>
+       <?php } else { } if ($IP4 <> "") { ?>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoIP4; ?>" alt="<?php echo $NomeIP4; ?>" width="128px" >
+         <a class="users-list-name" href="#"><?php echo $NomeIP4; ?></a>
+         <span class="users-list-date">IP4</span>
+       </li>
+       <?php } else { } ?>
+      </ul>
     </div>
-    <div class="tab-pane" id="clubes">
+    <div class="tab-pane active" id="clubes">
     <!-- TABELA DE CLUBES ATIVOS DO DISTITO -->
      <table id="clubes" class="table table-bordered table-striped">
       <thead>
@@ -225,6 +305,7 @@ $dDistrito = $PDO->prepare("SELECT * FROM distrito WHERE distrito='$D'");
  </section>
 </div><!-- CONTENT-WRAPPER -->
 <?php 
+include_once 'modalDistritos.php';
 include_once '../footer.php'; 
 ?>
 </div>
@@ -232,8 +313,17 @@ include_once '../footer.php';
 <script src="../bootstrap/js/bootstrap.min.js"></script>
 <script src="../dist/js/app.min.js"></script>
 <script src="../dist/js/demo.js"></script>
+<script src="../plugins/select2/select2.full.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<!-- DataTables -->
 <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<!-- AdminLTE for demo purposes -->
 <script>
   $(function () {
     $("#clubes").DataTable();
@@ -246,6 +336,43 @@ include_once '../footer.php';
       "info": true,
       "autoWidth": false
     });
+  });
+</script>
+<script language="JavaScript">
+function abrir(URL) {
+ 
+  var width = 1000;
+  var height = 650;
+ 
+  var left = 99;
+  var top = 99;
+ 
+  window.open(URL,'janela', 'width='+width+', height='+height+', top='+top+', left='+left+', scrollbars=yes, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no');
+ 
+}
+</script>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $(".select2").select2();
+  });
+</script>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $(".select3").select2();
+  });
+</script>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $(".select4").select2();
+  });
+</script>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $(".select5").select2();
   });
 </script>
 </body>

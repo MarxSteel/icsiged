@@ -6,6 +6,7 @@ $cDistrito = "active";
 $Submenu = "active";
 $PDO = db_connect();
 require_once '../QueryUser.php';
+include_once 'cargosDistrito.php';
 
 
 $D = $Distrito;
@@ -81,7 +82,7 @@ $QtIP = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Dist
         ]);
 
         var options = {
-        legend: 'none',
+        legend: 'true',
         pieSliceText: 'label',
           pieHole: 0.2,
           slices: {
@@ -169,107 +170,194 @@ $QtIP = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Dist
       <h5 class="widget-user-desc">Representante Distrital</h5>
      </div> 
     </div>
+    <div class="info-box">
+      <a href="javascript:abrir('GerenciaEquipe.php');">
+      <span class="info-box-icon bg-white"><img src="../dist/img/icons/lecture.png" ></span>
+     </a>
+     <div class="info-box-content"><br /><h4>Gerenciar Equipe Distrital</h4></div>
+    </div>
+    <div class="info-box">
+     <a data-toggle="modal" data-target="#EstSocios">
+      <span class="info-box-icon bg-white"><img src="../dist/img/icons/studying.png" ></span>
+     </a>
+     <div class="info-box-content"><br /><h4>Estatísticas de Associados</h4></div>
+    </div>
+    <div class="info-box">
+     <a data-toggle="modal" data-target="#PROJETOS">
+      <span class="info-box-icon bg-white"><img src="../dist/img/icons/calculation.png" ></span>
+     </a>
+     <div class="info-box-content"><br /><h4>Estatísticas de Projetos</h4></div>
+    </div>
    </div>
-   <div class="col-md-4 col-xs-12">
-    <div class="box box-solid">
-      <div class="box-body">
-       <div class="row">
-        <div class="col-md-12">
-         <div class="chart-responsive">
-          <div id="associados"></div>
-         </div>
-        </div>
-       </div>
-      </div>
-      <div class="box-footer no-padding">
-       <ul class="nav nav-pills nav-stacked">
-        <li>
-        <div class="info-box2 bg-aqua">
-         <span class="info-box-mini"><img src="../dist/img/icons/boy.png" width="50"></span>
-          <div class="info-box-content2">
-           <span class="info-box-text2">MASCULINO</span>
-           <span class="info-box-number"><?php echo $AM; ?> Associados</span>
-          </div>
-         </div>
-        </li>
-        <li>
-        <div class="info-box2 bg-maroon">
-         <span class="info-box-mini"><img src="../dist/img/icons/girl.png" width="50"></span>
-          <div class="info-box-content2">
-           <span class="info-box-text2">FEMININO</span>
-           <span class="info-box-number"><?php echo $AF; ?> Associados</span>
-          </div>
-         </div>
-        </li>
-       </ul>
-      </div> 
-     </div>
-   </div>
-   <div class="col-md-4 col-xs-12">
-    <div class="box box-solid">
-      <div class="box-body">
-       <div class="row">
-        <div class="col-md-12">
-         <div class="chart-responsive">
-          <div id="listaProjetos"></div>
-         </div>
-        </div>
-       </div>
-      </div>
-      <div class="box-footer no-padding">
-       <ul class="nav nav-pills nav-stacked">
-        <li>
-         <div class="info-box2 shazam-verde">
-          <span class="info-box-icon5"><i class="fa fa-money"></i></span>
-           <div class="info-box-content3"><strong>FINANÇAS</strong>
-           <i class="pull-right"><?php echo $QtFinancas; ?> PROJETOS</i>
-           </div>
-          </div>
-        </li>
-        <li>
-         <div class="info-box2 shazam-vermelho">
-          <span class="info-box-icon5"><i class="fa fa-laptop"></i></span>
-           <div class="info-box-content3"><strong>IMAGEM PÚBLICA</strong>
-           <i class="pull-right"><?php echo $QtIP; ?> PROJETOS</i>
-           </div>
-          </div>
-        </li>
-        <li>
-         <div class="info-box2 shazam-azul">
-          <span class="info-box-icon5"><i class="fa fa-child"></i></i></span>
-           <div class="info-box-content3"><strong>COMUNIDADES</strong>
-           <i class="pull-right"><?php echo $QtComunidades; ?> PROJETOS</i>
-           </div>
-          </div>
-        </li>
-        <li>
-         <div class="info-box2 shazam-roxo">
-          <span class="info-box-icon5"><i class="glyphicon glyphicon-globe"></i></span>
-           <div class="info-box-content3"><strong>INTERNACIONAIS</strong>
-           <i class="pull-right"><?php echo $QtInternacionais; ?> PROJETOS</i>
-           </div>
-          </div>
-        </li>
-        <li>
-         <div class="info-box2 shazam-laranja">
-          <span class="info-box-icon5"><i class="fa fa-heartbeat"></i></span>
-           <div class="info-box-content3"><strong>INTERNOS</strong>
-           <i class="pull-right"><?php echo $QtInternos; ?> PROJETOS</i>
-           </div>
-          </div>
-        </li>
-       </ul>
-      </div> 
-     </div>
+
+
+ <div class="col-md-8 col-xs-12">
+ <!-- TABELA POR ABAS -->
+  <div class="nav-tabs-custom">
+   <ul class="nav nav-tabs">
+    <li class="active"><a href="#clubes" data-toggle="tab">Clubes</a></li>
+    <li><a href="#equipe" data-toggle="tab">Equipe Distrital</a></li>
+    <li><a href="#projetos" data-toggle="tab">Projetos</a></li>
+   </ul>
+   <div class="tab-content">
+    <div class="tab-pane" id="equipe">
+     <b>EQUIPE DISTRITAL</b>
+      <ul class="users-list clearfix">
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoRDI; ?>" alt="<?php echo $NomeRDI; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeRDI; ?></a>
+         <span class="users-list-date">RDI</span>
+       </li>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoSDI; ?>" alt="<?php echo $NomeSDI; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeSDI; ?></a>
+         <span class="users-list-date">SDI</span>
+       </li>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoTDI; ?>" alt="<?php echo $NomeTDI; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeTDI; ?></a>
+         <span class="users-list-date">TDI</span>
+       </li>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoPDI; ?>" alt="<?php echo $NomePDI; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomePDI; ?></a>
+         <span class="users-list-date">PDI</span>
+       </li>
+       <?php if ($DDP1 <> "") { ?>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoDDP1; ?>" alt="<?php echo $NomeDDP1; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeDDP1; ?></a>
+         <span class="users-list-date">DDP1</span>
+       </li>
+       <?php } else { } if ($DDP2 <> "") { ?>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoDDP2; ?>" alt="<?php echo $NomeDDP2; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeDDP2; ?></a>
+         <span class="users-list-date">DDP2</span>
+       </li>
+       <?php } else { } if ($DDP3 <> "") { ?>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoDDP3; ?>" alt="<?php echo $NomeDDP3; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeDDP3; ?></a>
+         <span class="users-list-date">DDP3</span>
+       </li>
+       <?php } else { } if ($DDP4 <> "") { ?>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoDDP4; ?>" alt="<?php echo $NomeDDP4; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeDDP4; ?></a>
+         <span class="users-list-date">DDP4</span>
+       </li>
+       <?php } else { } if ($IP1 <> "") { ?>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoIP1; ?>" alt="<?php echo $NomeIP1; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeIP1; ?></a>
+         <span class="users-list-date">IP1</span>
+       </li>
+       <?php } else { } if ($IP2 <> "") { ?>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoIP2; ?>" alt="<?php echo $NomeIP2; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeIP2; ?></a>
+         <span class="users-list-date">IP2</span>
+       </li>
+       <?php } else { } if ($IP3 <> "") { ?>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoIP3; ?>" alt="<?php echo $NomeIP3; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeIP3; ?></a>
+         <span class="users-list-date">IP3</span>
+       </li>
+       <?php } else { } if ($IP4 <> "") { ?>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoIP4; ?>" alt="<?php echo $NomeIP4; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeIP4; ?></a>
+         <span class="users-list-date">IP4</span>
+       </li>
+       <?php } else { } ?>
+      </ul>
+    </div>
+    <div class="tab-pane active" id="clubes">
+    <!-- TABELA DE CLUBES ATIVOS DO DISTITO -->
+     <table id="tabelaClubes" class="table table-bordered table-striped">
+      <thead>
+       <tr>
+        <th>Clube</th>
+        <th>Reunião</th>
+        <th>E-Mail</th>
+        <th></th>
+       </tr>
+      </thead>
+      <tbody>
+       <?php
+        $ClubesDistrito = "SELECT * FROM icbr_clube WHERE icbr_Distrito='$D' and icbr_Status='A'";
+         $ChamaClube = $PDO->prepare($ClubesDistrito);
+         $ChamaClube->execute();
+          while ($Cl = $ChamaClube->fetch(PDO::FETCH_ASSOC)):
+          echo '
+       <tr>
+        <td>'. $Cl["icbr_Clube"] .'</td>
+        <td>'. $Cl["icbr_Semana"] .', '.  $Cl["icbr_Horario"]   . '( '. $Cl["icbr_Periodo"] .' )</td>
+        <td> '. $Cl["icbr_ProjetoEmail"] .' </td>';
+            echo '<td>';
+             echo '<a class="btn btn-default btn-xs" href="javascript:abrir(';
+             echo "'../Clubes/VerClube.php?ID=" . $Cl['icbr_id'] . "');";
+             echo '"><i class="fa fa-search"></i> VISUALIZAR</a>&nbsp;';
+            echo "</td>";
+       echo '</tr>';
+      endwhile;
+        ?>
+       <tr>
+        <td>Curitiba Norte</td>
+        <td>Sábado, 14:30, Semanal</td>
+        <td>meue-mail@email.com</td>
+        <td> </td>
+       </tr>
+      </tbody>
+     </table>
+    <!-- FIM DA TABELA DE CLUBES -->
+    </div>
+    <div class="tab-pane" id="projetos">
+    <!-- TABELA DE PROJETOS APROVADOS DO DISTITO -->
+     <table id="tabelaProjetos" class="table table-bordered table-striped">
+      <thead>
+       <tr>
+        <th>PROJETO</th>
+        <th>AVENIDA</th>
+        <th></th>
+       </tr>
+      </thead>
+      <tbody>
+       <?php
+        $ProjetosDistrito = "SELECT * FROM icbr_projeto WHERE pro_distrito='$D' and pro_status='3'";
+         $ChamaProjeto = $PDO->prepare($ProjetosDistrito);
+         $ChamaProjeto->execute();
+          while ($Pj = $ChamaProjeto->fetch(PDO::FETCH_ASSOC)):
+          echo '
+       <tr>
+        <td>'. $Pj["pro_nome"] .'</td>
+        <td>'. $Pj["pro_avenida"] .'</td>';
+            echo '<td>';
+             echo '<a class="btn btn-default btn-xs" href="javascript:abrir(';
+             echo "'../ANP/vANP.php?ID=" . $Pj['id'] . "');";
+             echo '"><i class="fa fa-search"></i> VISUALIZAR</a>&nbsp;';
+            echo "</td>";
+       echo '</tr>';
+      endwhile;
+        ?>
+      </tbody>
+     </table>
+    <!-- FIM DA PROJETOS DE CLUBES -->
     </div>
    </div>
   </div>
+ <!-- FIM DA TABELA POR ABAS -->
+ </div>
 
 
 
+  </div><!-- row -->
  </section>
 </div><!-- CONTENT-WRAPPER -->
 <?php 
+include_once 'modalDistrito.php';
 include_once '../footer.php'; 
 ?>
 
@@ -289,8 +377,33 @@ include_once '../footer.php';
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
 <script src="../plugins/select2/select2.full.min.js"></script>
-<script src="../plugins/morris/morris.min.js"></script>
-
+<script>
+  $(function () {
+    $("#tabelaClubes").DataTable();
+    $("#tabelaProjetos").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>
+<script language="JavaScript">
+function abrir(URL) {
+ 
+  var width = 1000;
+  var height = 650;
+ 
+  var left = 99;
+  var top = 99;
+ 
+  window.open(URL,'janela', 'width='+width+', height='+height+', top='+top+', left='+left+', scrollbars=yes, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no');
+ 
+}
+</script>
 <script>
   $(function () {
     "use strict";
