@@ -97,21 +97,22 @@ $IDClube = $_GET['ID'];
        <li class="list-group-item">
         <b>Data de Posse:</b> 
         <a class="pull-right">
-         <code><?php echo $DataPosseSocio; ?></code>
+         <code><?php echo dateConvert($DataPosseSocio); ?></code>
          </a>
        </li>
        <li class="list-group-item">
         <b>Data de Nascimento:</b> 
         <a class="pull-right">
-         <code>
+         <code><?php echo dateConvert($DataNascimentoSocio); ?></code>
           <?php 
-          echo $DataNascimentoSocio; 
+           
             // Separa em dia, mês e ano 
-           list($dia, $mes, $ano) = explode('/', $DataNascimentoSocio);  
+           /*list($dia, $mes, $ano) = explode('/', $DataNascimentoSocio);  
             $hoje = mktime(0, 0, 0, date('m'), date('d'), date('Y')); 
             $nascimento = mktime( 0, 0, 0, $mes, $dia, $ano);  
             $idade = floor((((($hoje - $nascimento) / 60) / 60) / 24) / 365.25);
           echo "</code><strong> Idade: </strong>" . $idade;
+          */
           ?>
          </a>
        </li>
