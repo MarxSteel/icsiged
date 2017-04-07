@@ -15,7 +15,7 @@
         <div class="col-xs-8">Rotary Club Padrinho
          <input name="RCPadrinho" type="text" required class="form-control" placeholder="Nome Completo do Rotary Club Padrinho" />
         </div>
-        <div class="col-xs-4">Senha de Administrador
+        <div class="col-xs-4">Digite sua senha
          <input name="passRDI" type="password" required class="form-control" />
         </div>
         <div class="modal-footer"><br /><br /><br />
@@ -88,7 +88,7 @@
            <input type="text" name="DataFund" class="form-control" minlength="10" maxlength="10" OnKeyPress="formatar('##/##/####', this)" required="required" placeholder="Data">
          </div>
         </div>
-        <div class="col-xs-4">Senha de Administrador
+        <div class="col-xs-4">Digite sua senha
          <input name="passRDI" type="password" required class="form-control" />
         </div>
         <div class="col-xs-4"><br />
@@ -185,7 +185,7 @@
          <option value="Domingo"> Domingo</option> 
         </select>
        </div>
-       <div class="col-xs-3">Senha de Administrador
+       <div class="col-xs-3">Digite sua senha
         <input name="passRDI" type="password" required class="form-control" />
        </div>
        <div class="col-xs-3"><br />
@@ -302,7 +302,7 @@
        <div class="col-xs-4">CEP (COM PONTUAÇÃO)
         <input type="text" name="CEPEndereco" required class="form-control" minlength="10" maxlength="10" placeholder="12.345-678" />
        </div>
-       <div class="col-xs-4">Senha de Administrador
+       <div class="col-xs-4">Digite sua senha
         <input name="passRDI" type="password" required class="form-control" />
        </div>
        <div class="col-xs-12"><br />
@@ -463,7 +463,7 @@
        <div class="col-md-4 col-xs-6">CEP (COM PONTUAÇÃO)
         <input type="text" name="CEP"  class="form-control" minlength="10" maxlength="10" placeholder="12.345-678" />
        </div>       
-        <div class="col-md-4 col-xs-6">Senha de Administrador
+        <div class="col-md-4 col-xs-6">Digite sua senha
          <input name="passRDI" type="password"  class="form-control" />
         </div>
         <div class="col-xs-12"><br />
@@ -537,7 +537,7 @@
         <div class="col-xs-8">Novo E-mail
          <input name="MailNovo" type="mail" required class="form-control" placeholder="email@mail.com" />
         </div>
-        <div class="col-xs-4">Senha de Administrador
+        <div class="col-xs-4">Digite sua senha
          <input name="passRDI" type="password" required class="form-control" />
         </div>
         <div class="modal-footer"><br /><br /><br />

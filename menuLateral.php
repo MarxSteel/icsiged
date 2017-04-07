@@ -53,13 +53,14 @@
      <a href="<?php echo $server; ?>/ANP/dashboard.php">
       <i class="fa fa-file-text"></i>Cadastro de Projetos</a>
     </li>
+   <?php } else { } ?>
    </ul>
    <!--
     <li class="<?php echo $cANP; ?>">
      <a href="<?php echo $server; ?>/ANP/arquivo.php">
       <i class="fa fa-list-alt"></i>Arquivo Nacional de Projetos</a>
     </li>-->
-    <?php } else { } ?>
+    
  </li>
   <li class="<?php echo $cDistritos; ?>">
    <a href="<?php echo $server; ?>/Brasil/Distritos.php">

@@ -1,12 +1,12 @@
 <?php
-$server = 'http://interactbrasil.org/sistema';
+$server = 'http://interactbrasil.org/interact';
 // constantes com as credenciais de acesso ao banco MySQL
 $host = "mysql.hostinger.com.br";
 $user = "u220304474_intra";
 $pass = "aA4WzQKePjMk";
 $banco = "u220304474_intra";
 $titulo = "SIGED - Sistema Integrado de Gestão Distrital <<MDIO INTERACT BRASIL>>";
-$versao = "1.1.1.10";
+$versao = "1.1.2";
 define('DB_HOST', $host);
 define('DB_USER', $user);
 define('DB_PASS', $pass);

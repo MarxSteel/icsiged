@@ -237,6 +237,22 @@ require_once '../QueryUser.php';
           </div>
          </div>
        </li> 
+       <li>
+        <div class="info-box2 bg-blue">
+         <a href="Distrito.php?RI=4750" target="_blank"><span class="info-box-icon4 bg-olive"><br />4750</span></a>
+          <div class="info-box-content2">
+           <span class="info-box-text-estado"><h5> [RJ] - Rio de Janeiro</h5></span>
+          </div>
+         </div>
+       </li> 
+       <li>
+        <div class="info-box2 bg-navy">
+         <a href="Distrito.php?RI=4760" target="_blank"><span class="info-box-icon4 bg-navy"><br />4760</span></a>
+          <div class="info-box-content2">
+           <span class="info-box-text-estado"><h5> [MG] - Minas Gerais</h5></span>
+          </div>
+         </div>
+       </li>
       </ul>
      </div>
     </div>
@@ -262,8 +278,7 @@ require_once '../QueryUser.php';
        </li>
        <li>
         <div class="info-box2 shazam-laranja-claro">
-         <a href="Distrito.php?RI=4640" >
-          <span class="info-box-icon4 shazam-laranja-claro"><br />4640</span>
+         <a href="Distrito.php?RI=4640" target="_blank"><span class="info-box-icon4 shazam-laranja-claro"><br />4640</span>
          </a>
           <div class="info-box-content2">
            <span class="info-box-text-estado"><h5> [PR] - Paraná</h5></span>
@@ -272,8 +287,7 @@ require_once '../QueryUser.php';
        </li>
        <li>
         <div class="info-box2 shazam-roxo">
-         <a href="Distrito.php?RI=4650" >
-          <span class="info-box-icon4 shazam-roxo"><br />4650</span>
+         <a href="Distrito.php?RI=4650" target="_blank"><span class="info-box-icon4 shazam-roxo"><br />4650</span>
          </a>
           <div class="info-box-content2">
            <span class="info-box-text-estado"><h5> [SC] - Santa Catarina</h5></span>
@@ -282,8 +296,7 @@ require_once '../QueryUser.php';
        </li>
        <li>
         <div class="info-box2 shazam-roxo">
-         <a href="Distrito.php?RI=4651" >
-          <span class="info-box-icon4 shazam-roxo"><br />4651</span>
+         <a href="Distrito.php?RI=4651" target="_blank"><span class="info-box-icon4 shazam-roxo"><br />4651</span>
          </a>
           <div class="info-box-content2">
            <span class="info-box-text-estado"><h5> [SC] - Santa Catarina</h5></span>
@@ -292,8 +305,7 @@ require_once '../QueryUser.php';
        </li>
        <li>
         <div class="info-box2 shazam-azul">
-         <a href="Distrito.php?RI=4660" >
-          <span class="info-box-icon4 shazam-azul"><br />4660</span>
+         <a href="Distrito.php?RI=4660" target="_blank"><span class="info-box-icon4 shazam-azul"><br />4660</span>
          </a>
           <div class="info-box-content2">
            <span class="info-box-text-estado"><h5> [RS] - Rio Grande do Sul</h5></span>
@@ -302,8 +314,7 @@ require_once '../QueryUser.php';
        </li>
        <li>
         <div class="info-box2 shazam-azul">
-         <a href="Distrito.php?RI=4670" >
-          <span class="info-box-icon4 shazam-azul"><br />4670</span>
+         <a href="Distrito.php?RI=4670" target="_blank"><span class="info-box-icon4 shazam-azul"><br />4670</span>
          </a>
           <div class="info-box-content2">
            <span class="info-box-text-estado"><h5> [RS] - Rio Grande do Sul</h5></span>
@@ -312,8 +323,7 @@ require_once '../QueryUser.php';
        </li>
        <li>
         <div class="info-box2 shazam-azul">
-         <a href="Distrito.php?RI=4680" >
-          <span class="info-box-icon4 shazam-azul"><br />4680</span>
+         <a href="Distrito.php?RI=4680" target="_blank"><span class="info-box-icon4 shazam-azul"><br />4680</span>
          </a>
           <div class="info-box-content2">
            <span class="info-box-text-estado"><h5> [RS] - Rio Grande do Sul</h5></span>
@@ -322,8 +332,7 @@ require_once '../QueryUser.php';
        </li>
        <li>
         <div class="info-box2 shazam-azul">
-         <a href="Distrito.php?RI=4700" >
-          <span class="info-box-icon4 shazam-azul"><br />4700</span>
+         <a href="Distrito.php?RI=4700" target="_blank"><span class="info-box-icon4 shazam-azul"><br />4700</span>
          </a>
           <div class="info-box-content2">
            <span class="info-box-text-estado"><h5> [RS] - Rio Grande do Sul</h5></span>
@@ -332,8 +341,7 @@ require_once '../QueryUser.php';
        </li>
        <li>
         <div class="info-box2 shazam-laranja-claro">
-         <a href="Distrito.php?RI=4710" >
-          <span class="info-box-icon4 shazam-laranja-claro"><br />4710</span>
+         <a href="Distrito.php?RI=4710" target="_blank"><span class="info-box-icon4 shazam-laranja-claro"><br />4710</span>
          </a>
           <div class="info-box-content2">
            <span class="info-box-text-estado"><h5> [PR] - Paraná</h5></span>
@@ -342,8 +350,7 @@ require_once '../QueryUser.php';
        </li>
        <li>
         <div class="info-box2 shazam-laranja-claro">
-         <a href="Distrito.php?RI=4730" >
-          <span class="info-box-icon4 shazam-laranja-claro"><br />4730</span>
+         <a href="Distrito.php?RI=4730" target="_blank"><span class="info-box-icon4 shazam-laranja-claro"><br />4730</span>
          </a>
           <div class="info-box-content2">
            <span class="info-box-text-estado"><h5> [PR] - Paraná</h5></span>
@@ -352,8 +359,7 @@ require_once '../QueryUser.php';
        </li>
        <li>
         <div class="info-box2 shazam-roxo">
-         <a href="Distrito.php?RI=4740" >
-          <span class="info-box-icon4 shazam-roxo"><br />4740</span>
+         <a href="Distrito.php?RI=4740" target="_blank"><span class="info-box-icon4 shazam-roxo"><br />4740</span>
          </a>
           <div class="info-box-content2">
            <span class="info-box-text-estado"><h5> [SC] - Santa Catarina</h5></span>
@@ -362,8 +368,7 @@ require_once '../QueryUser.php';
        </li>
        <li>
         <div class="info-box2 shazam-azul">
-         <a href="Distrito/4780.php" >
-          <span class="info-box-icon4 shazam-azul"><br />4780</span>
+         <a href="Distrito/4780.php" target="_blank"><span class="info-box-icon4 shazam-azul"><br />4780</span>
          </a>
           <div class="info-box-content2">
            <span class="info-box-text-estado"><h5> [RS] - Rio Grande do Sul</h5></span>
@@ -495,7 +500,7 @@ require_once '../QueryUser.php';
       </div>
      <div class="box-body">      
       <div class="info-box">
-       <a href="#" target="_blank"><span class="info-box-icon shazam-roxo">4720</span></a>
+       <a href="#"><span class="info-box-icon shazam-roxo">4720</span></a>
        <div class="info-box-content">
         <span class="info-box-text">AC, AM, AP, PA, RO, RR, TO</span>
         <span class="info-box-number">

@@ -4,9 +4,13 @@ require_once '../init.php';
 $PrivClubes = "active";
 $cDistritos = "active";
 $PDO = db_connect();
+$PDO2 = db_connect();
 require_once '../QueryUser.php';
 // AQUI DECLARO A QUERY DE DADOS DOS CLUBES:
 $D = $_GET['RI'];
+ $Associados = $PDO->query("SELECT COUNT(*) FROM icbr_associado WHERE icbr_AssStatus='A' AND icbr_AssDistrito = '$D'")->fetchColumn();
+ $Clubes = $PDO->query("SELECT COUNT(*) FROM icbr_clube WHERE icbr_Status='A' AND icbr_Distrito = '$D'")->fetchColumn();
+ //$Projetos = $PDO2->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito = '$D'")->fetchColumn();
 $dDistrito = $PDO->prepare("SELECT * FROM distrito WHERE distrito='$D'");
  $dDistrito->execute();
  $ddd = $dDistrito->fetch();
@@ -27,9 +31,6 @@ $dDistrito = $PDO->prepare("SELECT * FROM distrito WHERE distrito='$D'");
   $IP4 = $ddd['IP4'];
 include_once 'cargosDistrito.php';
 
- $Associados = $PDO->query("SELECT COUNT(*) FROM icbr_associado WHERE icbr_AssStatus='A' AND icbr_AssDistrito = '$D'")->fetchColumn();
- $Clubes = $PDO->query("SELECT COUNT(*) FROM icbr_clube WHERE icbr_Status='A' AND icbr_Distrito = '$D'")->fetchColumn();
- $Projetos = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_Distrito = '$D'")->fetchColumn();
 
 ?>
 <!DOCTYPE html>
@@ -124,12 +125,14 @@ include_once 'cargosDistrito.php';
       <span class="description-text">ASSOCIADOS</span>
      </div>
     </div>
+    <!--
     <div class="col-sm-4">
      <div class="description-block">
       <h5 class="description-header"><?php echo $Projetos; ?></h5>
        <span class="description-text">PROJETOS</span>
      </div>
     </div>
+    -->
    </div>
   </div>
   <div class="box box-widget widget-user-2">
@@ -245,7 +248,7 @@ include_once 'cargosDistrito.php';
           echo '
        <tr>
         <td>'. $Cl["icbr_Clube"] .'</td>
-        <td>'. $Cl["icbr_Semana"] .', '.  $Cl["icbr_Horario"]   . '( '. $Cl["icbr_Periodo"] .' )</td>
+        <td>'. $Cl["icbr_Semana"] .', '.  $Cl["icbr_Horario"]   . '('. $Cl["icbr_Periodo"] .')</td>
         <td> '. $Cl["icbr_ProjetoEmail"] .' </td>';
             echo '<td>';
              echo '<a class="btn btn-default btn-xs" href="javascript:abrir(';
@@ -255,12 +258,6 @@ include_once 'cargosDistrito.php';
        echo '</tr>';
       endwhile;
         ?>
-       <tr>
-        <td>Curitiba Norte</td>
-        <td>Sábado, 14:30, Semanal</td>
-        <td>meue-mail@email.com</td>
-        <td> </td>
-       </tr>
       </tbody>
      </table>
     <!-- FIM DA TABELA DE CLUBES -->
