@@ -69,6 +69,9 @@ $QyQtPjto = "SELECT COUNT(*) FROM icbr_projeto WHERE pro_Distrito = '$D'";
  $QryQtPjto = $PDO->prepare($QyQtPjto);
  $QryQtPjto->execute();
  $Projetos = $QryQtPjto->FetchColumn();
+ if ($Projetos < "1") {
+   $Projetos = "0";
+ }
 ?>
 <!DOCTYPE html>
 <html>
@@ -242,6 +245,16 @@ $QyQtPjto = "SELECT COUNT(*) FROM icbr_projeto WHERE pro_Distrito = '$D'";
         <img src="../dist/img/perfil/<?php echo $FotoPDI; ?>" alt="<?php echo $NomePDI; ?>" width="120px" >
          <a class="users-list-name" href="#"><?php echo $NomePDI; ?></a>
          <span class="users-list-date">PDI</span>
+       </li>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoViceRDI; ?>" alt="<?php echo $NomeViceRDI; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeViceRDI; ?></a>
+         <span class="users-list-date">Vice RDI</span>
+       </li>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoRDIEleito; ?>" alt="<?php echo $NomeRDIEleito; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeRDIEleito; ?></a>
+         <span class="users-list-date">RDI Eleito</span>
        </li>
        <?php if ($DDP1 <> "") { ?>
        <li>
