@@ -604,6 +604,116 @@
  </div>
 </div>
 <!-- TROCAR IP4 -->
+<!-- TROCAR ViceRDI -->
+<div id="ViceRDI" class="modal fade" role="dialog">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header bg-blue">
+    <button type="button" class="close" data-dismiss="modal">X</button>
+     <h4 class="modal-title">ATUALIZAR VICE RDI</h4>
+   </div>
+   <div class="modal-body">
+    <form name="ViceRDI" id="name" method="post" action="" enctype="multipart/form-data">
+     <div class="col-xs-12">Associado
+      <?php
+       $ViceRDI = "SELECT * FROM icbr_associado WHERE icbr_AssStatus='A' AND icbr_AssDistrito='$Distrito'";
+        // seleciona os registros
+        $ViceRDI = $PDO->prepare($ViceRDI);
+        $ViceRDI->execute();
+      ?>
+      <div class="form-group">
+       <select class="form-control select2" name="socioViceRDI" style="width: 100%;" required>
+        <option value="" selected="selected">SELECIONE</option>
+        <?php while ($SViceRDI = $ViceRDI->fetch(PDO::FETCH_ASSOC)): ?>
+        <option value="<?php echo $SViceRDI['icbr_uid'] ?>"><?php echo $SViceRDI['icbr_AssNome'] ?></option>
+        <?php endwhile; ?>
+       </select>
+      </div>
+     </div>
+      <div class="col-md-6 col-xs-12"><br /></div><br />
+       <div><br /><br />
+        <input name="ViceRDI" type="submit" class="btn btn-primary" id="ViceRDI" value="Atualizar" />
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+       </div>
+    </form>    
+    <?php
+    if(@$_POST["ViceRDI"])
+    {
+     $NovoViceRDI = $_POST["socioViceRDI"];
+     $executaViceRDI = $PDO->query("UPDATE distrito SET ViceRDI='$NovoViceRDI' WHERE distrito='$Distrito' ");
+     if($executaViceRDI)
+     {
+      echo '<script type="text/javascript">alert("ATUALIZADO COM SUCESSO");</script>';
+      echo '<script type="text/javascript">window.close();</script>';
+     }
+     else
+     {
+      echo '<script type="text/javascript">alert("Não foi possivel");</script>';
+      echo '<script type="text/javascript">window.close();</script>';
+     }
+    }
+    ?>
+   </div>
+   <div class="modal-footer"></div>
+  </div>
+ </div>
+</div>
+<!-- TROCAR ViceRDI -->
+<!-- TROCAR RDIEleito -->
+<div id="RDIEleito" class="modal fade" role="dialog">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header bg-blue">
+    <button type="button" class="close" data-dismiss="modal">X</button>
+     <h4 class="modal-title">ATUALIZAR RDI ELEITO</h4>
+   </div>
+   <div class="modal-body">
+    <form name="RDIEleito" id="name" method="post" action="" enctype="multipart/form-data">
+     <div class="col-xs-12">Associado
+      <?php
+       $RDIEleito = "SELECT * FROM icbr_associado WHERE icbr_AssStatus='A' AND icbr_AssDistrito='$Distrito'";
+        // seleciona os registros
+        $RDIEleito = $PDO->prepare($RDIEleito);
+        $RDIEleito->execute();
+      ?>
+      <div class="form-group">
+       <select class="form-control select2" name="socioRDIEleito" style="width: 100%;" required>
+        <option value="" selected="selected">SELECIONE</option>
+        <?php while ($SRDIEleito = $RDIEleito->fetch(PDO::FETCH_ASSOC)): ?>
+        <option value="<?php echo $SRDIEleito['icbr_uid'] ?>"><?php echo $SRDIEleito['icbr_AssNome'] ?></option>
+        <?php endwhile; ?>
+       </select>
+      </div>
+     </div>
+      <div class="col-md-6 col-xs-12"><br /></div><br />
+       <div><br /><br />
+        <input name="RDIEleito" type="submit" class="btn btn-primary" id="RDIEleito" value="Atualizar" />
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+       </div>
+    </form>    
+    <?php
+    if(@$_POST["RDIEleito"])
+    {
+     $NovoRDIEleito = $_POST["socioRDIEleito"];
+     $executaRDIEleito = $PDO->query("UPDATE distrito SET RDIEleito='$NovoRDIEleito' WHERE distrito='$Distrito' ");
+     if($executaRDIEleito)
+     {
+      echo '<script type="text/javascript">alert("ATUALIZADO COM SUCESSO");</script>';
+      echo '<script type="text/javascript">window.close();</script>';
+     }
+     else
+     {
+      echo '<script type="text/javascript">alert("Não foi possivel");</script>';
+      echo '<script type="text/javascript">window.close();</script>';
+     }
+    }
+    ?>
+   </div>
+   <div class="modal-footer"></div>
+  </div>
+ </div>
+</div>
+<!-- TROCAR RDIEleito -->
 <!-- ESTATÍSTICAS DE ASSOCIADOS -->
 <div id="EstSocios" class="modal fade" role="dialog">
  <div class="modal-dialog">
