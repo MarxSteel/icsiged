@@ -272,8 +272,12 @@
           $data = new Spreadsheet_Excel_Reader($dir . "/" . $NomeValidar . '.xls'); 
           for( $i=3; $i <= $data->rowcount($sheet_index=0); $i++ )
           {
-            $NomeXLS = $data->val($i, 1);
-            $NomeCompleto = TiraCaractere($NomeXLS);
+            $NomeCompleto = $data->val($i, 1);
+              if ($NomeCompleto == "") {
+              }
+              else{
+
+
             $DtNasc = $data->val($i, 2);
             $QDtNasc = explode("/", $DtNasc);
             $NascMes = $QDtNasc[0];
@@ -313,6 +317,7 @@
             echo '<script type="text/javascript">window.close();</script>';
            }
           }
+        }
        }
      }
      else 
