@@ -237,7 +237,7 @@
    <div class="col-md-4 col-xs-12">Selecione o Arquivo
     <input name="fileUpload" type="file" class="form" onfocus="this.value='';"/>      
    </div>
-   <div class="col-md-3 col-xs-12">Senha de Administrador
+   <div class="col-md-3 col-xs-12">Digite sua senha
     <input name="passRDI" type="password" required class="form-control" />
    </div>
     <br /><br /><br /><br /><br /><br /><br />
