@@ -1,12 +1,11 @@
-<!--   <div class="col-md-4 col-sm-6 col-xs-12">
+   <div class="col-md-4 col-sm-6 col-xs-12">
     <div class="info-box">
-     <a href="Clubes/dashboard.php" >
+     <a href="Distrito/dashboard.php" >
       <span class="info-box-icon3 bg-white"><img src="dist/img/icons/notepad.png" width="90"></span>
      </a>
      <div class="info-box-content"><h4>Dados do Meu Distrito</h4></div>
     </div>
    </div>
--->
   <?php if ($PrivClubes === "1") { ?>
    <div class="col-md-4 col-sm-6 col-xs-12">
     <div class="info-box">
@@ -53,7 +52,14 @@
     </div>
    </div>
   <?php } else { }?>
-
+   <div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="info-box">
+     <a href="Brasil/Distritos.php" >
+      <span class="info-box-icon3 bg-white"><img src="dist/img/icons/map.png" width="90"></span>
+     </a>
+     <div class="info-box-content"><h4>Distritos do Brasil</h4></div>
+    </div>
+   </div>
   <!--
    <div class="col-md-4 col-sm-6 col-xs-12">
     <div class="info-box">

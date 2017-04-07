@@ -18,14 +18,48 @@
   <?php 
   } else { } 
     //CHAMANDO AS QUERIES DE ASSOCIADOS E PROJETOS
-   $QtAM = $PDO->query("SELECT COUNT(*) FROM icbr_associado WHERE icbr_AssStatus='A' AND icbr_AssGenero = 'M'")->fetchColumn();
-   $QtAF = $PDO->query("SELECT COUNT(*) FROM icbr_associado WHERE icbr_AssStatus='A' AND icbr_AssGenero = 'F'")->fetchColumn();
-   $ProA = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_status='3'")->fetchColumn();
-   $ProP = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_status='2'")->fetchColumn();
-   $ProR = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_status='1'")->fetchColumn();
+$QQtAM = "SELECT COUNT(*) FROM icbr_associado WHERE icbr_AssStatus='A' AND icbr_AssGenero = 'M'";
+ $QtAMM = $PDO->prepare($QQtAM); 
+ $QtAMM->execute(); 
+$QtAM = $QtAMM->fetchColumn();
 
 
+$QQtAF = "SELECT COUNT(*) FROM icbr_associado WHERE icbr_AssStatus='A' AND icbr_AssGenero = 'F'";
+ $QtAFM = $PDO->prepare($QQtAF); 
+ $QtAFM->execute(); 
+$QtAF = $QtAFM->fetchColumn();
 
+
+$QProA = "SELECT COUNT(*) FROM icbr_projeto WHERE pro_status='3'";
+ $ProAM = $PDO->prepare($QProA); 
+ $ProAM->execute(); 
+$ProA = $ProAM->fetchColumn();
+  if ($ProA > "1") {
+    $ProA = "0";
+  }else{
+   $ProA = $ProAM->fetchColumn(); 
+  }
+
+
+$QProP = "SELECT COUNT(*) FROM icbr_projeto WHERE pro_status='2'";
+ $ProPM = $PDO->prepare($QProP); 
+ $ProPM->execute(); 
+$ProP = $ProPM->fetchColumn();
+  if ($ProP > "1") {
+    $ProP = "0";
+  }else{
+   $ProP = $ProPM->fetchColumn(); 
+  }
+
+$QProR = "SELECT COUNT(*) FROM icbr_projeto WHERE pro_status='1'";
+ $ProRM = $PDO->prepare($QProR); 
+ $ProRM->execute(); 
+$ProR = $ProRM->fetchColumn();
+  if ($ProR > "1") {
+    $ProR = "0";
+  }else{
+   $ProR = $ProRM->fetchColumn(); 
+  }
   ?>
   </div>
   <h4 class="page-header">Interact Brasil - Visão Geral</h4>

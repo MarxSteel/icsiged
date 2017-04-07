@@ -76,7 +76,7 @@ include_once 'cargosDistrito.php';
          <a class="users-list-name" href="#"><?php echo $NomeSDI; ?></a>
          <span class="users-list-date">Secretário(a) Distrital</span>
            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#SDI">
-            <i class="fa fa-refresh"></i> Trocar SDI
+            <i class="fa fa-refresh"></i> Atualizar SDI
            </button>
        </li>
        <li>
@@ -84,7 +84,7 @@ include_once 'cargosDistrito.php';
          <a class="users-list-name" href="#"><?php echo $NomeTDI; ?></a>
          <span class="users-list-date">Tesoureiro(a) Distrital</span>
            <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#TDI">
-            <i class="fa fa-refresh"></i> Trocar TDI
+            <i class="fa fa-refresh"></i> Atualizar TDI
            </button>
        </li>
        <li>
@@ -92,7 +92,23 @@ include_once 'cargosDistrito.php';
          <a class="users-list-name" href="#"><?php echo $NomePDI; ?></a>
          <span class="users-list-date">Protocolo Distrital</span>
            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#PDI">
-            <i class="fa fa-refresh"></i> Trocar PDI
+            <i class="fa fa-refresh"></i> Atualizar PDI
+           </button>
+       </li>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoViceRDI; ?>" alt="<?php echo $NomeViceRDI; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeViceRDI; ?></a>
+         <span class="users-list-date">ViceRDI</span>
+           <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#PDI">
+            <i class="fa fa-refresh"></i> Atualizar Vice RDI
+           </button>
+       </li>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoRDIEleito; ?>" alt="<?php echo $NomeRDIEleito; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeRDIEleito; ?></a>
+         <span class="users-list-date">RDIEleito</span>
+           <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#PDI">
+            <i class="fa fa-refresh"></i> Atualizar RDI Eleito
            </button>
        </li>
        </ul>
@@ -110,7 +126,7 @@ include_once 'cargosDistrito.php';
              <a class="users-list-name" href="#"><?php echo $NomeDDP1; ?></a>
              <span class="users-list-date">DDP1</span>
            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#DDP1">
-            <i class="fa fa-refresh"></i> TROCAR DDP1
+            <i class="fa fa-refresh"></i> Atualizar DDP1
            </button>
            </li>
            <li>
@@ -118,7 +134,7 @@ include_once 'cargosDistrito.php';
              <a class="users-list-name" href="#"><?php echo $NomeDDP2; ?></a>
              <span class="users-list-date">DDP2</span>
            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#DDP2">
-            <i class="fa fa-refresh"></i> TROCAR DDP2
+            <i class="fa fa-refresh"></i> Atualizar DDP2
            </button>
            </li>
            <li>
@@ -126,7 +142,7 @@ include_once 'cargosDistrito.php';
              <a class="users-list-name" href="#"><?php echo $NomeDDP3; ?></a>
              <span class="users-list-date">DDP3</span>
            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#DDP3">
-            <i class="fa fa-refresh"></i> TROCAR DDP3
+            <i class="fa fa-refresh"></i> Atualizar DDP3
            </button>
            </li>
            <li>
@@ -134,7 +150,7 @@ include_once 'cargosDistrito.php';
              <a class="users-list-name" href="#"><?php echo $NomeDDP4; ?></a>
              <span class="users-list-date">DDP4</span>
            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#DDP4">
-            <i class="fa fa-refresh"></i> TROCAR DDP4
+            <i class="fa fa-refresh"></i> Atualizar DDP4
            </button>
            </li>
           </ul>
@@ -156,7 +172,7 @@ include_once 'cargosDistrito.php';
              <a class="users-list-name" href="#"><?php echo $NomeIP1; ?></a>
              <span class="users-list-date">IP1</span>
            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#IP1">
-            <i class="fa fa-refresh"></i> TROCAR IP1
+            <i class="fa fa-refresh"></i> Atualizar IP1
            </button>
            </li>
            <li>
@@ -164,7 +180,7 @@ include_once 'cargosDistrito.php';
              <a class="users-list-name" href="#"><?php echo $NomeIP2; ?></a>
              <span class="users-list-date">IP2</span>
            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#IP2">
-            <i class="fa fa-refresh"></i> TROCAR IP2
+            <i class="fa fa-refresh"></i> Atualizar IP2
            </button>
            </li>
            <li>
@@ -172,7 +188,7 @@ include_once 'cargosDistrito.php';
              <a class="users-list-name" href="#"><?php echo $NomeIP3; ?></a>
              <span class="users-list-date">IP3</span>
            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#IP3">
-            <i class="fa fa-refresh"></i> TROCAR IP3
+            <i class="fa fa-refresh"></i> Atualizar IP3
            </button>
            </li>
            <li>
@@ -180,7 +196,7 @@ include_once 'cargosDistrito.php';
              <a class="users-list-name" href="#"><?php echo $NomeIP4; ?></a>
              <span class="users-list-date">IP4</span>
            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#IP4">
-            <i class="fa fa-refresh"></i> TROCAR IP3
+            <i class="fa fa-refresh"></i> Atualizar IP3
            </button>
            </li>
           </ul>

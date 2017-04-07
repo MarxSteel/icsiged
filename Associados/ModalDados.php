@@ -27,7 +27,7 @@
       <input type="text" name="cpf"  minlength="14" maxlength="14" class="form-control" placeholder="999.999.999-99">
      </div>
      <div class="col-md-4 col-xs-12">RG
-      <input type="text" name="rg"  minlength="14" maxlength="14" class="form-control" placeholder="12.345.678-90">
+      <input type="text" name="rg"  minlength="12" maxlength="14" class="form-control" placeholder="12.345.678-90">
      </div>
      <div class="col-md-6 col-xs-12">Interact Club de:
       <?php
@@ -94,7 +94,7 @@
        <input type="text" name="cidade" class="form-control" required  >
       </div>
       <div class="col-md-4 col-xs-6">CEP
-       <input type="text"  name="cep" minlength="10" maxlength="10"  class="form-control" required  >
+       <input type="text"  name="cep" minlength="9" maxlength="10"  class="form-control" required  >
       </div>
       <div class="col-md-4 col-xs-6">Estado
        <select class="form-control" name="uf" required>
@@ -163,17 +163,16 @@
       $Nome = $_POST['nome'];
       $Clube = $_POST['clube'];
       $Cargo = $_POST['cargo'];
-      $DataPosse = $_POST['posse'];
-       $Posse = dateConvert($DataPosse);
-      $DataNascimento = $_POST['nasc'];
-       $DtNasc = dateConvert($DataNascimento);
+      $Posse = $_POST['posse'];
+      $DtNasc = $_POST['nasc'];
       $Rua = $_POST['rua'];
       $Num = $_POST['numero'];
       $Bairro = $_POST['bairro'];
       $Cidade = $_POST['cidade'];
       $UF = $_POST['uf'];
       $CEP = $_POST['cep'];
-      $G = $_POST['genero'];     
+      $G = $_POST['genero'];
+    
       $Mail = $_POST['mail'];
       $DDD1 = $_POST['ddd'];
       $TELEFONE_1 = $_POST['telefone'];
@@ -268,51 +267,71 @@
         $dir = 'planilhas/'; //Diretório para uploads
         move_uploaded_file($_FILES['fileUpload']['tmp_name'], $dir.$new_name); //Fazer upload do arquivo
         error_reporting(E_ALL ^ E_NOTICE); 
-          require_once 'excel_reader2.php'; 
-          $data = new Spreadsheet_Excel_Reader($dir . "/" . $NomeValidar . '.xls'); 
-          for( $i=3; $i <= $data->rowcount($sheet_index=0); $i++ )
-          {
-            $NomeXLS = $data->val($i, 1);
-            $NomeCompleto = TiraCaractere($NomeXLS);
-            $DtNasc = $data->val($i, 2);
-            $QDtNasc = explode("/", $DtNasc);
-            $NascMes = $QDtNasc[0];
-            $NascDia = $QDtNasc[1];
-            $NascAno = $QDtNasc[2];
-             $DataNascimento = $NascAno . "-" . $NascMes . "-" . $NascDia;
-            $DtPosse = $data->val($i, 3);
-            $QDtPosse = explode("/", $DtNasc);
-            $PosseMes = $QDtNasc[0];
-            $PosseDia = $QDtNasc[1];
-            $PosseAno = $QDtNasc[2];
-             $DataPosse = $PosseAno . "-" . $PosseMes . "-" . $PosseDia;
-            $DistritoImporta = $data->val($i, 4);
-            $ERua = $data->val($i, 5);
-            $ENum = $data->val($i, 6);
-            $EBai = $data->val($i, 7);
-            $ECid = $data->val($i, 8);
-            $EEst = $data->val($i, 9);
-            $ECEP = $data->val($i, 10);
-            $Gen = $data->val($i, 11);
-            $TDDD1 = $data->val($i, 12);
-            $TTEL1 = $data->val($i, 13);
-            $TDDD2 = $data->val($i, 14);
-            $TTEL2 = $data->val($i, 15);
-            $EMAIL = $data->val($i, 16);
-            $CPFSOCIO = $data->val($i, 17);
-            $StatusSocio = $data->val($i, 18);
-            $Importar = $PDO->query("INSERT INTO icbr_associado (icbr_AssNome, icbr_AssDtNascimento, icbr_AssClube, icbr_AssDistrito, icbr_DtPosse, icbr_AssClubeID, icbr_AssEndereco, icbr_AssNum, icbr_AssBairro, icbr_AssCidade, icbr_AssUF, icbr_AssCEP, icbr_AssGenero, icbr_AssFoto, DDD_1, TELEFONE_1, DDD_2, TELEFONE_2, icbr_AssEmail, icbr_CPF, icbr_AssStatus) VALUES ('$NomeCompleto', '$DataNascimento', '$clubeNome', '$DistritoImporta', '$DataPosse', '$CodClube', '$ERua', '$ENum', '$EBai', '$ECid', '$EEst', '$ECEP', '$Gen', 'SemFoto.jpg', '$TDDD1', '$TTEL1', '$TDDD2', '$TTEL2', '$EMAIL', '$CPFSOCIO', '$StatusSocio')");
-           if($Importar)
-           {
-            echo '<script type="text/JavaScript">alert("ATUALIZADO COM SUCESSO");
-              location.href="dashboard.php"</script>';
-           }
-           else
-           {
-            echo '<script type="text/javascript">alert("NÃO FOI POSSÍVEL ATUALIZAR CADASTRO, ENTRE EM CONTATO COM A INTERACT BRASIL");</script>';
-            echo '<script type="text/javascript">window.close();</script>';
-           }
-          }
+        set_include_path(get_include_path() . PATH_SEPARATOR . 'Classes/');
+          include '../dist/excel/PHPExcel/IOFactory.php';          
+          // Declarando quem é o arquivo que será tratado
+          $inputFileName = $dir.$new_name; 
+            //Tentando ler o objeto $dir.$new_name;
+            try 
+            {
+             $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
+            } 
+             catch(Exception $e) 
+            {
+             die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+            }
+            $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+            $arrayCount = count($allDataInSheet);  //CONTA A QUANTIDADE DE CAMPOS NA PLANILHA
+            //COMEÇA O "FOR" A PARTIR DA LINHA 3, AS PRIMEIRAS SÃO EXEMPLOS
+            for($i=3;$i<=$arrayCount;$i++)
+            {
+              //DECLARANDO O NOME DAS VARIAVEIS
+              $userName = trim($allDataInSheet[$i]["A"]);
+               $NomeCompleto = $userName;
+               if ($userName == "") {
+                 
+               }
+               else{
+              $DtNasc = trim($allDataInSheet[$i]["B"]);
+                $QDtNasc = explode("/", $DtNasc);
+                 $NascMes = $QDtNasc[0];
+                 $NascDia = $QDtNasc[1];
+                 $NascAno = $QDtNasc[2];
+                 $DataNascimento = $NascDia . "/" . $NascMes . "/" . $NascAno;
+              $DtPosse = trim($allDataInSheet[$i]["C"]);
+               $QDtPosse = explode("/", $DtPosse);
+                $PosseMes = $QDtNasc[0];
+                $PosseDia = $QDtNasc[1];
+                $PosseAno = $QDtNasc[2];
+                $DataPosse = $PosseDia . "/" . $PosseMes . "/" . $PosseAno;
+              $DistritoImporta = trim($allDataInSheet[$i]["D"]);
+              $ERua = trim($allDataInSheet[$i]["E"]);
+              $ENum = trim($allDataInSheet[$i]["F"]);
+              $EBai = trim($allDataInSheet[$i]["G"]);
+              $ECid = trim($allDataInSheet[$i]["H"]);
+              $EEst = trim($allDataInSheet[$i]["I"]);
+              $ECEP = trim($allDataInSheet[$i]["J"]);
+              $Gen = trim($allDataInSheet[$i]["K"]);
+              $TDDD1 = trim($allDataInSheet[$i]["L"]);
+              $TTEL1 = trim($allDataInSheet[$i]["M"]);
+              $TDDD2 = trim($allDataInSheet[$i]["N"]);
+              $TTEL2 = trim($allDataInSheet[$i]["O"]);
+              $EMAIL = trim($allDataInSheet[$i]["P"]);
+              $CPFSOCIO = trim($allDataInSheet[$i]["Q"]);
+              $StatusSocio = trim($allDataInSheet[$i]["R"]);
+              //Cadastra Sócio
+              $Importar = $PDO->query("INSERT INTO icbr_associado (icbr_AssNome, icbr_AssDtNascimento, icbr_AssClube, icbr_AssDistrito, icbr_DtPosse, icbr_AssClubeID, icbr_AssEndereco, icbr_AssNum, icbr_AssBairro, icbr_AssCidade, icbr_AssUF, icbr_AssCEP, icbr_AssGenero, icbr_AssFoto, DDD_1, TELEFONE_1, DDD_2, TELEFONE_2, icbr_AssEmail, icbr_CPF, icbr_AssStatus) VALUES ('$NomeCompleto', '$DataNascimento', '$clubeNome', '$DistritoImporta', '$DataPosse', '$CodClube', '$ERua', '$ENum', '$EBai', '$ECid', '$EEst', '$ECEP', '$Gen', 'SemFoto.jpg', '$TDDD1', '$TTEL1', '$TDDD2', '$TTEL2', '$EMAIL', '$CPFSOCIO', '$StatusSocio')");
+               if($Importar)
+               {
+                echo '<script type="text/JavaScript">alert("ATUALIZADO COM SUCESSO");location.href="dashboard.php"</script>';
+               }
+               else
+               {
+                echo '<script type="text/javascript">alert("NÃO FOI POSSÍVEL ATUALIZAR CADASTRO, ENTRE EM CONTATO COM A INTERACT BRASIL");</script>';
+                echo '<script type="text/javascript">window.close();</script>';
+               }
+             }
+            }
        }
      }
      else 
@@ -346,24 +365,9 @@
   </div>
  </div>
 </div>
+<!-- MODAL DE EXEMPLO -->
 <!-- FINAL DO MODAL DE IMPRESSÃO DE CREDENCIAL -->
-<!-- MODAL DE MANUAIS -->
-<div id="Manuais" class="modal fade" role="dialog">
- <div class="modal-dialog">
-  <div class="modal-content">
-   <div class="modal-header bg-navy">
-    <button type="button" class="close" data-dismiss="modal">X</button>
-     <h4 class="modal-title">Manuais</h4>
-   </div>
-   <div class="modal-body">
-    em breve
 
-   </div>
-   <div class="modal-footer"></div>
-  </div>
- </div>
-</div>
-<!-- MODAL DE MANUAIS -->
 
 
 

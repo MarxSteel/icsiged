@@ -33,22 +33,45 @@ $dDistrito = $PDO->prepare("SELECT * FROM distrito WHERE distrito='$D'");
 
 $AM = $PDO->query("SELECT COUNT(*) FROM icbr_associado WHERE icbr_AssStatus='A' AND icbr_AssDistrito = '$Distrito' AND icbr_AssGenero='M'")->fetchColumn();
 $AF = $PDO->query("SELECT COUNT(*) FROM icbr_associado WHERE icbr_AssStatus='A' AND icbr_AssDistrito = '$Distrito' AND icbr_AssGenero='F'")->fetchColumn();
-$QtComunidades = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Distrito' AND pro_avenida='COMUNIDADES'")->fetchColumn();
-$QtInternos = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Distrito' AND pro_avenida='INTERNOS'")->fetchColumn();
-$QtInternacionais = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Distrito' AND pro_avenida='INTERNACIONAIS'")->fetchColumn();
-$QtFinancas = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Distrito' AND pro_avenida='FINANCAS'")->fetchColumn();
-$QtIP = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Distrito' AND pro_avenida='IMAGEM PUBLICA'")->fetchColumn();
 
+$QyQtCom = "SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Distrito' AND pro_avenida='COMUNIDADES'";
+ $QryQtCom = $PDO->prepare($QyQtCom); 
+ $QryQtCom->execute(); 
+$QtComunidades = $QryQtCom->fetchColumn(); 
+
+$QyQtInt = "SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Distrito' AND pro_avenida='INTERNOS'";
+ $QryQtInt = $PDO->prepare($QyQtInt);
+ $QryQtInt->execute();
+ $QtInternos = $QryQtInt->FetchColumn();
+
+
+
+$QyQtItt = "SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Distrito' AND pro_avenida='INTERNACIONAIS'";
+ $QryQtIt = $PDO->prepare($QyQtItt);
+ $QryQtIt->execute();
+ $QtInternacionais = $QryQtIt->FetchColumn();
+
+$QyQtFinn = "SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Distrito' AND pro_avenida='FINANCAS'";
+ $QryQtFinn = $PDO->prepare($QyQtFinn);
+ $QryQtFinn->execute();
+ $QtFinancas = $QryQtFinn->FetchColumn();
+
+$QyQtPIP = "SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Distrito' AND pro_avenida='IMAGEM PUBLICA'";
+ $QryQtPIP = $PDO->prepare($QyQtPIP);
+ $QryQtPIP->execute();
+ $QtIP = $QryQtPIP->FetchColumn();
 
 
  $Associados = $PDO->query("SELECT COUNT(*) FROM icbr_associado WHERE icbr_AssStatus='A' AND icbr_AssDistrito = '$D'")->fetchColumn();
- $AsI = $PDO->query("SELECT COUNT(*) FROM icbr_associado WHERE icbr_AssStatus='I' AND icbr_AssDistrito = '$D'")->fetchColumn();
  $Clubes = $PDO->query("SELECT COUNT(*) FROM icbr_clube WHERE icbr_Status='A' AND icbr_Distrito = '$D'")->fetchColumn();
- $Projetos = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_Distrito = '$D'")->fetchColumn();
 
-
-
-
+$QyQtPjto = "SELECT COUNT(*) FROM icbr_projeto WHERE pro_Distrito = '$D'";
+ $QryQtPjto = $PDO->prepare($QyQtPjto);
+ $QryQtPjto->execute();
+ $Projetos = $QryQtPjto->FetchColumn();
+ if ($Projetos < "1") {
+   $Projetos = "0";
+ }
 ?>
 <!DOCTYPE html>
 <html>
@@ -223,6 +246,16 @@ $QtIP = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Dist
          <a class="users-list-name" href="#"><?php echo $NomePDI; ?></a>
          <span class="users-list-date">PDI</span>
        </li>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoViceRDI; ?>" alt="<?php echo $NomeViceRDI; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeViceRDI; ?></a>
+         <span class="users-list-date">Vice RDI</span>
+       </li>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoRDIEleito; ?>" alt="<?php echo $NomeRDIEleito; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeRDIEleito; ?></a>
+         <span class="users-list-date">RDI Eleito</span>
+       </li>
        <?php if ($DDP1 <> "") { ?>
        <li>
         <img src="../dist/img/perfil/<?php echo $FotoDDP1; ?>" alt="<?php echo $NomeDDP1; ?>" width="120px" >
@@ -294,7 +327,7 @@ $QtIP = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Dist
           echo '
        <tr>
         <td>'. $Cl["icbr_Clube"] .'</td>
-        <td>'. $Cl["icbr_Semana"] .', '.  $Cl["icbr_Horario"]   . '( '. $Cl["icbr_Periodo"] .' )</td>
+        <td>'. $Cl["icbr_Semana"] .', '.  $Cl["icbr_Horario"]   . '('. $Cl["icbr_Periodo"] .')</td>
         <td> '. $Cl["icbr_ProjetoEmail"] .' </td>';
             echo '<td>';
              echo '<a class="btn btn-default btn-xs" href="javascript:abrir(';
@@ -304,12 +337,6 @@ $QtIP = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito='$Dist
        echo '</tr>';
       endwhile;
         ?>
-       <tr>
-        <td>Curitiba Norte</td>
-        <td>Sábado, 14:30, Semanal</td>
-        <td>meue-mail@email.com</td>
-        <td> </td>
-       </tr>
       </tbody>
      </table>
     <!-- FIM DA TABELA DE CLUBES -->

@@ -4,10 +4,21 @@ require_once '../init.php';
 $PrivClubes = "active";
 $cDistritos = "active";
 $PDO = db_connect();
+$PDO2 = db_connect();
 require_once '../QueryUser.php';
 // AQUI DECLARO A QUERY DE DADOS DOS CLUBES:
 $D = $_GET['RI'];
-$dDistrito = $PDO->prepare("SELECT * FROM distrito WHERE distrito='$D'");
+ $Associados = $PDO->query("SELECT COUNT(*) FROM icbr_associado WHERE icbr_AssStatus='A' AND icbr_AssDistrito = '$D'")->fetchColumn();
+ $Clubes = $PDO->query("SELECT COUNT(*) FROM icbr_clube WHERE icbr_Status='A' AND icbr_Distrito = '$D'")->fetchColumn();
+ $QyQtPjto = "SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito = '$D'";
+ $QryQtPjto = $PDO->prepare($QyQtPjto);
+ $QryQtPjto->execute();
+ $Projetos = $QryQtPjto->FetchColumn();
+  if ($Projetos < "1") {
+    $Projetos = "0";
+  }
+
+ $dDistrito = $PDO->prepare("SELECT * FROM distrito WHERE distrito='$D'");
  $dDistrito->execute();
  $ddd = $dDistrito->fetch();
   $UF1 = $ddd['UF1'];
@@ -25,11 +36,10 @@ $dDistrito = $PDO->prepare("SELECT * FROM distrito WHERE distrito='$D'");
   $IP2 = $ddd['IP2'];
   $IP3 = $ddd['IP3'];
   $IP4 = $ddd['IP4'];
+  $ViceRDI = $ddd['ViceRDI'];
+  $RDIEleito = $ddd['RDIEleito'];
 include_once 'cargosDistrito.php';
 
- $Associados = $PDO->query("SELECT COUNT(*) FROM icbr_associado WHERE icbr_AssStatus='A' AND icbr_AssDistrito = '$D'")->fetchColumn();
- $Clubes = $PDO->query("SELECT COUNT(*) FROM icbr_clube WHERE icbr_Status='A' AND icbr_Distrito = '$D'")->fetchColumn();
- $Projetos = $PDO->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_Distrito = '$D'")->fetchColumn();
 
 ?>
 <!DOCTYPE html>
@@ -130,6 +140,7 @@ include_once 'cargosDistrito.php';
        <span class="description-text">PROJETOS</span>
      </div>
     </div>
+    
    </div>
   </div>
   <div class="box box-widget widget-user-2">
@@ -155,70 +166,80 @@ include_once 'cargosDistrito.php';
      <b>EQUIPE DISTRITAL</b>
       <ul class="users-list clearfix">
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoRDI; ?>" alt="<?php echo $NomeRDI; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoRDI; ?>" alt="<?php echo $NomeRDI; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeRDI; ?></a>
          <span class="users-list-date">RDI</span>
        </li>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoSDI; ?>" alt="<?php echo $NomeSDI; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoSDI; ?>" alt="<?php echo $NomeSDI; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeSDI; ?></a>
          <span class="users-list-date">SDI</span>
        </li>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoTDI; ?>" alt="<?php echo $NomeTDI; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoTDI; ?>" alt="<?php echo $NomeTDI; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeTDI; ?></a>
          <span class="users-list-date">TDI</span>
        </li>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoPDI; ?>" alt="<?php echo $NomePDI; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoPDI; ?>" alt="<?php echo $NomePDI; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomePDI; ?></a>
          <span class="users-list-date">PDI</span>
        </li>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoViceRDI; ?>" alt="<?php echo $NomeViceRDI; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeViceRDI; ?></a>
+         <span class="users-list-date">Vice RDI</span>
+       </li>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoRDIEleito; ?>" alt="<?php echo $NomeRDIEleito; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeRDIEleito; ?></a>
+         <span class="users-list-date">RDI Eleito</span>
+       </li>
        <?php if ($DDP1 <> "") { ?>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoDDP1; ?>" alt="<?php echo $NomeDDP1; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoDDP1; ?>" alt="<?php echo $NomeDDP1; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeDDP1; ?></a>
          <span class="users-list-date">DDP1</span>
        </li>
        <?php } else { } if ($DDP2 <> "") { ?>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoDDP2; ?>" alt="<?php echo $NomeDDP2; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoDDP2; ?>" alt="<?php echo $NomeDDP2; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeDDP2; ?></a>
          <span class="users-list-date">DDP2</span>
        </li>
        <?php } else { } if ($DDP3 <> "") { ?>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoDDP3; ?>" alt="<?php echo $NomeDDP3; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoDDP3; ?>" alt="<?php echo $NomeDDP3; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeDDP3; ?></a>
          <span class="users-list-date">DDP3</span>
        </li>
        <?php } else { } if ($DDP4 <> "") { ?>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoDDP4; ?>" alt="<?php echo $NomeDDP4; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoDDP4; ?>" alt="<?php echo $NomeDDP4; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeDDP4; ?></a>
          <span class="users-list-date">DDP4</span>
        </li>
        <?php } else { } if ($IP1 <> "") { ?>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoIP1; ?>" alt="<?php echo $NomeIP1; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoIP1; ?>" alt="<?php echo $NomeIP1; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeIP1; ?></a>
          <span class="users-list-date">IP1</span>
        </li>
        <?php } else { } if ($IP2 <> "") { ?>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoIP2; ?>" alt="<?php echo $NomeIP2; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoIP2; ?>" alt="<?php echo $NomeIP2; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeIP2; ?></a>
          <span class="users-list-date">IP2</span>
        </li>
        <?php } else { } if ($IP3 <> "") { ?>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoIP3; ?>" alt="<?php echo $NomeIP3; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoIP3; ?>" alt="<?php echo $NomeIP3; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeIP3; ?></a>
          <span class="users-list-date">IP3</span>
        </li>
        <?php } else { } if ($IP4 <> "") { ?>
        <li>
-        <img src="../dist/img/perfil/<?php echo $FotoIP4; ?>" alt="<?php echo $NomeIP4; ?>" width="128px" >
+        <img src="../dist/img/perfil/<?php echo $FotoIP4; ?>" alt="<?php echo $NomeIP4; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomeIP4; ?></a>
          <span class="users-list-date">IP4</span>
        </li>
@@ -227,7 +248,7 @@ include_once 'cargosDistrito.php';
     </div>
     <div class="tab-pane active" id="clubes">
     <!-- TABELA DE CLUBES ATIVOS DO DISTITO -->
-     <table id="clubes" class="table table-bordered table-striped">
+     <table id="tabelaClubes" class="table table-bordered table-striped">
       <thead>
        <tr>
         <th>Clube</th>
@@ -245,7 +266,7 @@ include_once 'cargosDistrito.php';
           echo '
        <tr>
         <td>'. $Cl["icbr_Clube"] .'</td>
-        <td>'. $Cl["icbr_Semana"] .', '.  $Cl["icbr_Horario"]   . '( '. $Cl["icbr_Periodo"] .' )</td>
+        <td>'. $Cl["icbr_Semana"] .', '.  $Cl["icbr_Horario"]   . '('. $Cl["icbr_Periodo"] .')</td>
         <td> '. $Cl["icbr_ProjetoEmail"] .' </td>';
             echo '<td>';
              echo '<a class="btn btn-default btn-xs" href="javascript:abrir(';
@@ -255,19 +276,13 @@ include_once 'cargosDistrito.php';
        echo '</tr>';
       endwhile;
         ?>
-       <tr>
-        <td>Curitiba Norte</td>
-        <td>Sábado, 14:30, Semanal</td>
-        <td>meue-mail@email.com</td>
-        <td> </td>
-       </tr>
       </tbody>
      </table>
     <!-- FIM DA TABELA DE CLUBES -->
     </div>
     <div class="tab-pane" id="projetos">
     <!-- TABELA DE PROJETOS APROVADOS DO DISTITO -->
-     <table id="projetos" class="table table-bordered table-striped">
+     <table id="tabelaProjetos" class="table table-bordered table-striped">
       <thead>
        <tr>
         <th>PROJETO</th>
@@ -326,16 +341,8 @@ include_once '../footer.php';
 <!-- AdminLTE for demo purposes -->
 <script>
   $(function () {
-    $("#clubes").DataTable();
-    $("#projetos").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
+    $("#tabelaClubes").DataTable();
+    $("#tabelaProjetos").DataTable();
   });
 </script>
 <script language="JavaScript">
