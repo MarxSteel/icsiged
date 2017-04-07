@@ -10,8 +10,15 @@ require_once '../QueryUser.php';
 $D = $_GET['RI'];
  $Associados = $PDO->query("SELECT COUNT(*) FROM icbr_associado WHERE icbr_AssStatus='A' AND icbr_AssDistrito = '$D'")->fetchColumn();
  $Clubes = $PDO->query("SELECT COUNT(*) FROM icbr_clube WHERE icbr_Status='A' AND icbr_Distrito = '$D'")->fetchColumn();
- //$Projetos = $PDO2->query("SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito = '$D'")->fetchColumn();
-$dDistrito = $PDO->prepare("SELECT * FROM distrito WHERE distrito='$D'");
+ $QyQtPjto = "SELECT COUNT(*) FROM icbr_projeto WHERE pro_distrito = '$D'";
+ $QryQtPjto = $PDO->prepare($QyQtPjto);
+ $QryQtPjto->execute();
+ $Projetos = $QryQtPjto->FetchColumn();
+  if ($Projetos < "1") {
+    $Projetos = "0";
+  }
+
+ $dDistrito = $PDO->prepare("SELECT * FROM distrito WHERE distrito='$D'");
  $dDistrito->execute();
  $ddd = $dDistrito->fetch();
   $UF1 = $ddd['UF1'];
@@ -29,6 +36,8 @@ $dDistrito = $PDO->prepare("SELECT * FROM distrito WHERE distrito='$D'");
   $IP2 = $ddd['IP2'];
   $IP3 = $ddd['IP3'];
   $IP4 = $ddd['IP4'];
+  $ViceRDI = $ddd['ViceRDI'];
+  $RDIEleito = $ddd['RDIEleito'];
 include_once 'cargosDistrito.php';
 
 
@@ -125,14 +134,13 @@ include_once 'cargosDistrito.php';
       <span class="description-text">ASSOCIADOS</span>
      </div>
     </div>
-    <!--
     <div class="col-sm-4">
      <div class="description-block">
       <h5 class="description-header"><?php echo $Projetos; ?></h5>
        <span class="description-text">PROJETOS</span>
      </div>
     </div>
-    -->
+    
    </div>
   </div>
   <div class="box box-widget widget-user-2">
@@ -176,6 +184,16 @@ include_once 'cargosDistrito.php';
         <img src="../dist/img/perfil/<?php echo $FotoPDI; ?>" alt="<?php echo $NomePDI; ?>" width="115px" >
          <a class="users-list-name" href="#"><?php echo $NomePDI; ?></a>
          <span class="users-list-date">PDI</span>
+       </li>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoViceRDI; ?>" alt="<?php echo $NomeViceRDI; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeViceRDI; ?></a>
+         <span class="users-list-date">Vice RDI</span>
+       </li>
+       <li>
+        <img src="../dist/img/perfil/<?php echo $FotoRDIEleito; ?>" alt="<?php echo $NomeRDIEleito; ?>" width="120px" >
+         <a class="users-list-name" href="#"><?php echo $NomeRDIEleito; ?></a>
+         <span class="users-list-date">RDI Eleito</span>
        </li>
        <?php if ($DDP1 <> "") { ?>
        <li>
