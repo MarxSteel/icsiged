@@ -1,5 +1,5 @@
 <?php
-$server = 'http://interactbrasil.org/interact';
+$server = 'http://interactbrasil.org/sistema';
 // constantes com as credenciais de acesso ao banco MySQL
 $host = "mysql.hostinger.com.br";
 $user = "u220304474_intra";
