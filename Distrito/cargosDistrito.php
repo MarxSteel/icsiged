@@ -23,6 +23,9 @@ $dDistrito = $PDO->prepare("SELECT * FROM distrito WHERE distrito='$Distrito'");
   $IP2 = $ddd['IP2'];
   $IP3 = $ddd['IP3'];
   $IP4 = $ddd['IP4'];
+  $ViceRDI = $ddd['ViceRDI'];
+  $RDIEleito = $ddd['RDIEleito'];
+
 //TRATANDO RDI
    $DadosRDI = $PDO->prepare("SELECT * FROM icbr_associado WHERE icbr_uid='$RDI'");
    $DadosRDI->execute();
@@ -50,6 +53,19 @@ $dDistrito = $PDO->prepare("SELECT * FROM distrito WHERE distrito='$Distrito'");
     $RPDI = $DadosPDI->fetch();
      $NomePDI = $RPDI['icbr_AssNome'];
      $FotoPDI = $RPDI['icbr_AssFoto'];
+
+//TRATANDO RDIEleito
+   $DadosRDIEleito = $PDO->prepare("SELECT * FROM icbr_associado WHERE icbr_uid='$RDIEleito'");
+   $DadosRDIEleito->execute();
+    $RRDIEleito = $DadosRDIEleito->fetch();
+     $NomeRDIEleito = $RRDIEleito['icbr_AssNome'];
+     $FotoRDIEleito = $RRDIEleito['icbr_AssFoto'];
+//TRATANDO ViceRDI
+   $DadosViceRDI = $PDO->prepare("SELECT * FROM icbr_associado WHERE icbr_uid='$ViceRDI'");
+   $DadosViceRDI->execute();
+    $RViceRDI = $DadosViceRDI->fetch();
+     $NomeViceRDI = $RViceRDI['icbr_AssNome'];
+     $FotoViceRDI = $RViceRDI['icbr_AssFoto'];
 
 //DIRETORES DE PROJETOS
 //TRATANDO DDP1
