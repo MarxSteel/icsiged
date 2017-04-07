@@ -32,6 +32,19 @@ NESTA PÁGINA SERA FEITA A QUERY DOS DADOS DA EQUIPE
      $NomePDI = $RPDI['icbr_AssNome'];
      $FotoPDI = $RPDI['icbr_AssFoto'];
 
+//TRATANDO RDIEleito
+   $DadosRDIEleito = $PDO->prepare("SELECT * FROM icbr_associado WHERE icbr_uid='$RDIEleito'");
+   $DadosRDIEleito->execute();
+    $RRDIEleito = $DadosRDIEleito->fetch();
+     $NomeRDIEleito = $RRDIEleito['icbr_AssNome'];
+     $FotoRDIEleito = $RRDIEleito['icbr_AssFoto'];
+//TRATANDO ViceRDI
+   $DadosViceRDI = $PDO->prepare("SELECT * FROM icbr_associado WHERE icbr_uid='$ViceRDI'");
+   $DadosViceRDI->execute();
+    $RViceRDI = $DadosViceRDI->fetch();
+     $NomeViceRDI = $RViceRDI['icbr_AssNome'];
+     $FotoViceRDI = $RViceRDI['icbr_AssFoto'];
+
 //DIRETORES DE PROJETOS
 //TRATANDO DDP1
    $DadosDDP1 = $PDO->prepare("SELECT * FROM icbr_associado WHERE icbr_uid='$DDP1'");
