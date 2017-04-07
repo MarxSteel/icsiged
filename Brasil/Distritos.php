@@ -158,10 +158,10 @@ require_once '../QueryUser.php';
          </div>
        </li>
        <li>
-        <div class="info-box2 bg-navy">
+        <div class="info-box2 bg-olive">
          <a href="Distrito.php?RI=4510" target="_blank"><span class="info-box-icon4 bg-navy"><br />4510</span></a>
           <div class="info-box-content2">
-           <span class="info-box-text-estado"><h5> [MG] - Minas Gerais</h5></span>
+           <span class="info-box-text-estado"><h5> [SP] - São Paulo</h5></span>
           </div>
          </div>
        </li>
